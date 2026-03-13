@@ -1,0 +1,17 @@
+/* ── Fustat ─────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Fustat';
+  src: url('/Fustat/Fustat-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Manrope ────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Manrope';
+  src: url('/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
