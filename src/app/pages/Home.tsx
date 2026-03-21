@@ -63,7 +63,7 @@ export function Home() {
             <div className="relative">
               <div className="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-square">
                 <img
-                  src="/hero-testimonial.jpeg"
+                  src="/Delivery guy.jfif"
                   alt="Our Story"
                   className="w-full h-full object-cover"
                 />

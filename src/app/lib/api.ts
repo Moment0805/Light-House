@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosError } from 'axios';
 import { tokenStore } from './token.store';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/v1';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 
 let isRefreshing = false;
 let refreshQueue: Array<(token: string) => void> = [];
@@ -54,7 +54,7 @@ api.interceptors.response.use(
           {},
           { withCredentials: true },
         );
-        const newToken: string = data.data.accessToken;
+        const newToken: string = data.accessToken;
         tokenStore.set(newToken);
         processQueue(newToken);
         if (originalRequest.headers) {

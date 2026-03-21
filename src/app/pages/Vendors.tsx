@@ -81,7 +81,7 @@ export function Vendors() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <p className="text-primary font-semibold text-sm mb-1">🏪 Discover</p>
+              <p className="text-primary font-semibold text-sm mb-1">Discover</p>
               <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">Our Vendors</h1>
               <p className="text-slate-500 mt-2 text-sm">
                 {openCount} of {vendors.length} vendors open now · Delivery from ₦300
@@ -102,7 +102,7 @@ export function Vendors() {
 
           {/* ── Category filter tabs ── */}
           <div className="flex items-center gap-2 mt-6 overflow-x-auto pb-1 scrollbar-hide">
-            {CATEGORIES.map((cat) => (
+            {/* {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
@@ -115,7 +115,7 @@ export function Vendors() {
                 <span>{CATEGORY_ICONS[cat]}</span>
                 {cat}
               </button>
-            ))}
+            ))} */}
 
             {/* Open only toggle */}
             <button

@@ -49,7 +49,7 @@ export function Cart() {
                     <h3 className="font-semibold text-primary mb-1">{item.name}</h3>
                     <p className="text-sm text-muted-foreground mb-2">{item.vendorName}</p>
                     <p className="text-lg font-semibold text-accent">
-                      ₦{item.price.toLocaleString()}
+                      ₦{(item.price / 100).toLocaleString()}
                     </p>
                   </div>
 
@@ -94,7 +94,7 @@ export function Cart() {
               <div className="space-y-3 mb-4">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Subtotal</span>
-                  <span className="font-medium">₦{total.toLocaleString()}</span>
+                  <span className="font-medium">₦{(total / 100).toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Delivery Fee</span>
@@ -104,7 +104,7 @@ export function Cart() {
                   <div className="flex justify-between">
                     <span className="font-semibold">Total</span>
                     <span className="text-xl font-bold text-accent">
-                      ₦{(total + 500).toLocaleString()}
+                      ₦{((total / 100) + 500).toLocaleString()}
                     </span>
                   </div>
                 </div>

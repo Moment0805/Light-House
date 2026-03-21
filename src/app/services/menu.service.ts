@@ -24,7 +24,7 @@ export interface MenuCategory {
 export const menuService = {
   getByVendor: (vendorId: string) =>
     api
-      .get<{ data: MenuCategory[] }>(`/menu/vendor/${vendorId}`)
+      .get<{ data: MenuCategory[] }>(`/menu/vendor/${vendorId}/categories`)
       .then((r) => r.data.data),
 
   getItem: (itemId: string) =>

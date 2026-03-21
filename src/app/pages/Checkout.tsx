@@ -61,8 +61,7 @@ export function Checkout() {
       // 3. Initiate payment
       const payment = await paymentsService.initiate(order.id, idempotencyKey);
 
-      // 4. Clear cart and redirect to OPay
-      await clearCart();
+      // 4. Redirect to OPay
       window.location.href = payment.cashierUrl;
 
     } catch (err: any) {

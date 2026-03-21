@@ -75,12 +75,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => { loadCart(); }, [loadCart]);
 
-  // Listen for logout — clear cart state
+  // Listen for login/logout — reload or clear cart state
   useEffect(() => {
     const onLogout = () => setItems([]);
+    const onLogin = () => loadCart();
+    
     window.addEventListener('auth:logout', onLogout);
-    return () => window.removeEventListener('auth:logout', onLogout);
-  }, []);
+    window.addEventListener('auth:login', onLogin);
+    
+    return () => {
+      window.removeEventListener('auth:logout', onLogout);
+      window.removeEventListener('auth:login', onLogin);
+    };
+  }, [loadCart]);
 
   // ── Cart actions ────────────────────────────────────────────
   const addToCart = async (item: Omit<CartItem, 'quantity'>) => {

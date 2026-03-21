@@ -46,7 +46,7 @@ export function AboutUs() {
 
           {/* Left: image collage */}
           <div className="relative grid grid-cols-2 gap-4">
-            <div className="col-span-2 rounded-3xl overflow-hidden h-64 shadow-md">
+            <div className="col-span-2 rounded-3xl overflow-hidden h-60 shadow-md">
               <img src="/hero-testimonial.jpeg" alt="Our team" className="w-full h-full object-cover" />
             </div>
             <div className="rounded-2xl overflow-hidden h-40 shadow-sm">

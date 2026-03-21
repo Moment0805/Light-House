@@ -7,21 +7,38 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { toast } from 'sonner';
+import { usersService } from '../services/users.service';
 
 export function Profile() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
+  const initialName =
+    user ? [user.firstName, user.lastName].filter(Boolean).join(' ') : '';
+
   const [formData, setFormData] = useState({
-    name: user?.name || '',
+    name: initialName,
     email: user?.email || '',
     phone: user?.phone || '',
     address: '123 Allen Avenue, Ikeja, Lagos',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success('Profile updated successfully!');
+    try {
+      const [firstName, ...rest] = formData.name.trim().split(' ');
+      const lastName = rest.join(' ');
+
+      await usersService.updateProfile({
+        firstName: firstName || undefined,
+        lastName: lastName || undefined,
+        phone: formData.phone || undefined,
+      });
+
+      toast.success('Profile updated successfully!');
+    } catch (err: any) {
+      toast.error(err?.response?.data?.message || 'Failed to update profile');
+    }
   };
 
   const handleLogout = () => {
@@ -44,7 +61,9 @@ export function Profile() {
               <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <User className="w-10 h-10 text-accent" />
               </div>
-              <h3 className="font-semibold text-primary mb-1">{user?.name}</h3>
+              <h3 className="font-semibold text-primary mb-1">
+                {formData.name || initialName || 'Guest'}
+              </h3>
               <p className="text-sm text-muted-foreground">{user?.email}</p>
             </div>
 

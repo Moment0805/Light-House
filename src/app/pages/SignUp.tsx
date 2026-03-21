@@ -5,15 +5,17 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card } from '../components/ui/card';
-import { Lightbulb, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export function SignUp() {
-  const [name, setName] = useState('');
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
   const { signup } = useAuth();
   const navigate = useNavigate();
 
@@ -30,9 +32,27 @@ export function SignUp() {
       return;
     }
 
+    const trimmedName = fullName.trim();
+
+    if (!trimmedName) {
+      toast.error('Full name is required');
+      return;
+    }
+
+    const nameParts = trimmedName.split(/\s+/);
+
+    if (nameParts.length < 2) {
+      toast.error('Please enter your first and last name');
+      return;
+    }
+
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(' ');
+
     setIsLoading(true);
+
     try {
-      await signup(email, password, name);
+      await signup(email, password, firstName, lastName, phone);
       toast.success('Account created successfully!');
       navigate('/vendors');
     } catch (error) {
@@ -53,9 +73,7 @@ export function SignUp() {
 
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight mb-2">Create Account</h1>
-          <p className="text-slate-500">
-            Join Light House Logistics today
-          </p>
+          <p className="text-slate-500">Join Light House Logistics today</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -65,8 +83,8 @@ export function SignUp() {
               id="name"
               type="text"
               placeholder="John Doe"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               required
               className="mt-1.5 bg-input-background"
             />
@@ -80,6 +98,19 @@ export function SignUp() {
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+              className="mt-1.5 bg-input-background"
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="phone">Phone Number</Label>
+            <Input
+              id="phone"
+              type="tel"
+              placeholder="091****6789"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               required
               className="mt-1.5 bg-input-background"
             />

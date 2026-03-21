@@ -7,6 +7,7 @@ interface User {
   email: string;
   firstName: string;
   lastName: string;
+  phone?: string;
   role: string;
   emailVerified: boolean;
   avatarUrl?: string;
@@ -38,6 +39,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Fetch real user profile
         const me = await authService.getMe();
         setUser(me);
+        window.dispatchEvent(new CustomEvent('auth:login'));
       } catch {
         // No valid session — that's fine, stay logged out
         tokenStore.clear();
@@ -64,6 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const { accessToken, user: me } = await authService.login({ email, password });
     tokenStore.set(accessToken);
     setUser(me);
+    window.dispatchEvent(new CustomEvent('auth:login'));
   };
 
   const signup = async (
@@ -82,6 +85,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
     tokenStore.set(accessToken);
     setUser(me);
+    window.dispatchEvent(new CustomEvent('auth:login'));
   };
 
   const logout = async () => {

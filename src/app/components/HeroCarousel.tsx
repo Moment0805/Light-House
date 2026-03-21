@@ -247,7 +247,7 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
             {/* Left: text */}
             <div className="space-y-7">
               <Badge className="bg-primary/10 text-primary border-primary/20 font-semibold text-sm px-4 py-1.5 rounded-full">
-                🚀 Fast & Reliable Delivery
+                 Fast & Reliable Delivery
               </Badge>
               <h1 className="text-5xl lg:text-[5.5rem] font-extrabold text-slate-900 leading-[1.0] tracking-tight">
                 Comfort Food<br />

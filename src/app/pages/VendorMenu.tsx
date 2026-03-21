@@ -34,7 +34,7 @@ export function VendorMenu() {
   }, [vendorId]);
 
   const allItems = useMemo(() => {
-    return categories.flatMap((cat) => cat.items.map(item => ({...item, category: cat.name})));
+    return categories.flatMap((cat) => (cat.items || []).map(item => ({...item, category: cat.name})));
   }, [categories]);
 
   const availableCategories = useMemo(() => {
