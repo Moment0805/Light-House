@@ -17,6 +17,7 @@ export interface Vendor {
   openHours?: string; // formatted string from hours array
   badge?: string;
   badgeColor?: string;
+  totalReviews?: number;
 }
 
 export interface VendorFilters {

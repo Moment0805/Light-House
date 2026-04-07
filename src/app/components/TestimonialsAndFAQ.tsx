@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const faqs = [
   {
@@ -30,12 +31,12 @@ const testimonials = [
     name: 'Victor O.',
     location: 'Westend, KWASU Malate',
     rating: 5,
-    text: "Ordered egusi and fufu from Choplife on a Sunday when I was too tired to go out. It came in like 32 minutes and was still hot. Genuinely tasted like something my aunt would make. I've ordered from them 4 times since.",
+    text: "Ordered Jollof rice and chicken combo from Choplife on a Sunday after church when I was too tired to go out. It came in like 25 minutes and was still hot. Genuinely tasted like the best smoky jollof. I've ordered from them 4 times since.",
     vendor: 'Choplife',
     avatar: '/Victor.jpeg',
   },
   {
-    name: 'Moment',
+    name: 'OluwaMoment',
     location: 'Safari, KWASU Malate',
     rating: 5,
     text: "BK 46 grilled chicken is not a joke. I wasn't even expecting much the first time but it came well packaged and the portion was actually worth the price. Light House is the only delivery app I actually trust on campus.",
@@ -101,12 +102,18 @@ export function TestimonialsAndFAQ() {
       <section className="py-20 sm:py-28 overflow-hidden" style={{ background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 40%, #fde68a 100%)' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
 
-          <div className="text-center mb-14">
+          <motion.div 
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, type: "spring", bounce: 0.2 }}
+          >
             <p className="text-xs font-bold text-amber-600 uppercase tracking-[0.2em] mb-3">Real People · Real Orders</p>
             <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight">
               What our customers say
             </h2>
-          </div>
+          </motion.div>
 
           {/* Slide */}
           <div className={`transition-all duration-[380ms] ease-out ${slideClass}`}>
@@ -157,26 +164,36 @@ export function TestimonialsAndFAQ() {
       </section>
 
       {/* ──────────── FAQ ──────────── */}
-      <section className="bg-white py-20 sm:py-28 border-t border-slate-100">
+      <section className="bg-white py-20 sm:py-28 border-t border-slate-100 overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
 
-          <div className="text-center mb-12">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, type: "spring", bounce: 0.2 }}
+          >
             <p className="text-xs font-bold text-primary uppercase tracking-[0.2em] mb-3">Got questions?</p>
             <h2 className="text-4xl font-extrabold text-slate-900">Things people ask us</h2>
             <p className="text-slate-500 mt-3">
               The stuff that usually comes up before a first order — answered honestly.
             </p>
-          </div>
+          </motion.div>
 
           <div className="space-y-3">
             {faqs.map((item, i) => (
-              <div
+              <motion.div
                 key={i}
                 className="border border-slate-100 rounded-2xl overflow-hidden transition-all duration-200"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: i * 0.1, type: "spring", bounce: 0.2 }}
               >
                 <button
                   onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
-                  className="w-full flex items-center justify-between px-6 py-5 text-left"
+                  className="w-full flex items-center justify-between px-6 py-5 text-left bg-white z-10 relative"
                 >
                   <span className="font-semibold text-slate-900 pr-6">{item.q}</span>
                   <span className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${openFAQ === i ? 'bg-primary text-white rotate-45' : 'bg-slate-100 text-slate-500'}`}>
@@ -185,12 +202,20 @@ export function TestimonialsAndFAQ() {
                     </svg>
                   </span>
                 </button>
-                {openFAQ === i && (
-                  <div className="px-6 pb-6">
-                    <p className="text-slate-500 leading-relaxed">{item.a}</p>
-                  </div>
-                )}
-              </div>
+                <AnimatePresence>
+                  {openFAQ === i && (
+                    <motion.div 
+                      className="px-6 pb-6"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <p className="text-slate-500 leading-relaxed">{item.a}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             ))}
           </div>
         </div>
