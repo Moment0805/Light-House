@@ -7,6 +7,7 @@ import { Label } from '../components/ui/label';
 import { Card } from '../components/ui/card';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { getErrorMessage } from '../lib/error';
 
 export function SignUp() {
   const [fullName, setFullName] = useState('');
@@ -56,7 +57,7 @@ export function SignUp() {
       toast.success('Account created successfully!');
       navigate('/vendors');
     } catch (error) {
-      toast.error('Failed to create account. Please try again.');
+      toast.error(getErrorMessage(error, 'Failed to create account. Please try again.'));
     } finally {
       setIsLoading(false);
     }

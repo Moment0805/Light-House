@@ -82,7 +82,7 @@ export function PaymentProcessing() {
 
             <h2 className="text-2xl font-bold text-slate-900 mb-2">Verifying Payment</h2>
             <p className="text-slate-500 mb-6">
-              Please wait while we confirm your payment with OPay...
+              Please wait while we confirm your payment with Paystack...
             </p>
 
             <div className="space-y-3 text-left">

@@ -1,13 +1,24 @@
 import { Badge } from './ui/badge';
-import { CheckCircle, Clock, Package, Truck, XCircle } from 'lucide-react';
+import { CheckCircle, Clock, Package, Truck, XCircle, CreditCard, AlertCircle } from 'lucide-react';
 
 interface OrderStatusBadgeProps {
-  status: 'pending' | 'confirmed' | 'preparing' | 'on-the-way' | 'delivered' | 'cancelled';
+  status: string; // Accept any string from the backend
   showIcon?: boolean;
 }
 
 export function OrderStatusBadge({ status, showIcon = true }: OrderStatusBadgeProps) {
-  const config = {
+  // Normalize — backend sends UPPER_SNAKE_CASE, frontend used lowercase-kebab
+  // Support both shapes so existing code keeps working
+  const normalized = (status || '').toLowerCase().replace(/_/g, '-');
+
+  const config: Record<string, { label: string; className: string; icon: any }> = {
+    // Backend statuses (lowercased from UPPER_SNAKE_CASE)
+    'payment-pending': {
+      label: 'Awaiting Payment',
+      className: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+      icon: CreditCard,
+    },
+    // Standard statuses (both backend and legacy frontend shape)
     pending: {
       label: 'Pending',
       className: 'bg-yellow-100 text-yellow-800 border-yellow-200',
@@ -23,8 +34,18 @@ export function OrderStatusBadge({ status, showIcon = true }: OrderStatusBadgePr
       className: 'bg-purple-100 text-purple-800 border-purple-200',
       icon: Package,
     },
+    'ready-for-dispatch': {
+      label: 'Ready for Dispatch',
+      className: 'bg-indigo-100 text-indigo-800 border-indigo-200',
+      icon: Package,
+    },
     'on-the-way': {
       label: 'On the Way',
+      className: 'bg-orange-100 text-orange-800 border-orange-200',
+      icon: Truck,
+    },
+    'out-for-delivery': {
+      label: 'Out for Delivery',
       className: 'bg-orange-100 text-orange-800 border-orange-200',
       icon: Truck,
     },
@@ -40,7 +61,19 @@ export function OrderStatusBadge({ status, showIcon = true }: OrderStatusBadgePr
     },
   };
 
-  const { label, className, icon: Icon } = config[status];
+  const matched = config[normalized];
+
+  // Graceful fallback — never crash
+  if (!matched) {
+    return (
+      <Badge variant="outline" className="bg-slate-100 text-slate-600 border-slate-200">
+        {showIcon && <AlertCircle className="w-3 h-3 mr-1" />}
+        {status}
+      </Badge>
+    );
+  }
+
+  const { label, className, icon: Icon } = matched;
 
   return (
     <Badge variant="outline" className={className}>

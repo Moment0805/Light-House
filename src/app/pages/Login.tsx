@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { useSearchParams, Link, useNavigate } from 'react-router';
 import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card } from '../components/ui/card';
-import { Lightbulb, Loader2 } from 'lucide-react';
+import { Lightbulb, Loader2, AlertTriangle } from 'lucide-react';
 import { toast } from 'sonner';
+import { getErrorMessage } from '../lib/error';
 
 export function Login() {
+  const [searchParams] = useSearchParams();
+  const isExpired = searchParams.get('expired') === 'true';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +27,7 @@ export function Login() {
       toast.success('Welcome back!');
       navigate('/vendors');
     } catch (error) {
-      toast.error('Invalid email or password');
+      toast.error(getErrorMessage(error, 'Login failed. Please try again.'));
     } finally {
       setIsLoading(false);
     }
@@ -38,6 +41,16 @@ export function Login() {
             <img src="/logo.jpeg" alt="Light House Logo" className="w-full h-full object-cover" />
           </div>
         </div>
+
+        {isExpired && (
+          <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-2xl flex items-start gap-3 animate-in fade-in slide-in-from-top-4 duration-500">
+            <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm font-bold text-amber-900">Session Expired</p>
+              <p className="text-xs text-amber-700 mt-0.5">Your session has timed out. Please log in again to continue with your order.</p>
+            </div>
+          </div>
+        )}
 
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight mb-2">Welcome Back</h1>

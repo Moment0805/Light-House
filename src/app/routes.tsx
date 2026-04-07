@@ -12,11 +12,14 @@ import { VendorMenu } from './pages/VendorMenu';
 import { Cart } from './pages/Cart';
 import { Checkout } from './pages/Checkout';
 import { PaymentProcessing } from './pages/PaymentProcessing';
+import { PaymentVerify } from './pages/PaymentVerify';
 import { PaymentSuccess } from './pages/PaymentSuccess';
 import { PaymentFailure } from './pages/PaymentFailure';
 import { OrderHistory } from './pages/OrderHistory';
 import { OrderTracking } from './pages/OrderTracking';
 import { Profile } from './pages/Profile';
+import { Terms } from './pages/Terms';
+import { HelpCenter } from './pages/HelpCenter';
 
 function NotFound() {
   return (
@@ -46,6 +49,8 @@ export const router = createBrowserRouter([
       { path: 'login', Component: Login },
       { path: 'forgot-password', Component: ForgotPassword },
       { path: 'reset-password', Component: ResetPassword },
+      { path: 'terms', Component: Terms },
+      { path: 'help', Component: HelpCenter },
       {
         path: 'vendors',
         element: (
@@ -79,10 +84,20 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        // Legacy polling page — kept for any in-flight OPay orders
         path: 'payment/processing',
         element: (
           <ProtectedRoute>
             <PaymentProcessing />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        // Paystack callback_url — Paystack redirects here after payment
+        path: 'payment/verify',
+        element: (
+          <ProtectedRoute>
+            <PaymentVerify />
           </ProtectedRoute>
         ),
       },

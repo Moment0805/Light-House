@@ -61,10 +61,21 @@ api.interceptors.response.use(
           originalRequest.headers.Authorization = `Bearer ${newToken}`;
         }
         return api(originalRequest);
-      } catch {
+      } catch (refreshError: any) {
         tokenStore.clear();
-        // Dispatch a custom event so AuthContext can react (redirect to login)
+        // Dispatch custom event so AuthContext clears its user state
         window.dispatchEvent(new CustomEvent('auth:logout'));
+
+        // Only hard-redirect to login with the "expired" flag if:
+        // 1. The user was previously authenticated (had a token, so this is a real expiry, not a first-load guest)
+        // 2. We're not already on the login page (prevents infinite reload loop)
+        const alreadyOnLogin = window.location.pathname.startsWith('/login');
+        const hadSession = refreshError.response?.status === 401 && !alreadyOnLogin;
+
+        if (hadSession) {
+          window.location.href = '/login?expired=true';
+        }
+
         return Promise.reject(error);
       } finally {
         isRefreshing = false;

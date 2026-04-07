@@ -8,6 +8,8 @@ import { toast } from 'sonner';
 import { vendorsService, Vendor } from '../services/vendors.service';
 import { menuService, MenuItem, MenuCategory } from '../services/menu.service';
 
+import { CautionBanner } from '../components/CautionBanner';
+
 export function VendorMenu() {
   const { vendorId } = useParams();
   const { addToCart } = useCart();
@@ -91,6 +93,7 @@ export function VendorMenu() {
 
   return (
     <div className="min-h-screen bg-[#FAFAF9]">
+      <CautionBanner />
       {/* ── Vendor hero banner ──────────────────────────────────── */}
       <div className="relative bg-white border-b border-slate-100">
         <div className="h-48 sm:h-60 overflow-hidden relative">

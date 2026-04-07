@@ -8,6 +8,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { toast } from 'sonner';
 import { usersService } from '../services/users.service';
+import { getErrorMessage } from '../lib/error';
 
 export function Profile() {
   const { user, logout } = useAuth();
@@ -20,7 +21,7 @@ export function Profile() {
     name: initialName,
     email: user?.email || '',
     phone: user?.phone || '',
-    address: '123 Allen Avenue, Ikeja, Lagos',
+    address: 'Kwara State University, Malate, Ilorin',
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -37,7 +38,7 @@ export function Profile() {
 
       toast.success('Profile updated successfully!');
     } catch (err: any) {
-      toast.error(err?.response?.data?.message || 'Failed to update profile');
+      toast.error(getErrorMessage(err, 'Failed to update profile'));
     }
   };
 

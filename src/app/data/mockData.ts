@@ -225,8 +225,8 @@ export const mockOrders: Order[] = [
     total: 5500,
     status: 'delivered',
     createdAt: '2026-03-10T14:30:00Z',
-    deliveryAddress: '123 Allen Avenue, Ikeja, Lagos',
-    paymentMethod: 'OPay',
+    deliveryAddress: 'Kwara State University, Malate, Ilorin',
+    paymentMethod: 'Paystack',
     paymentStatus: 'paid',
   },
   {
@@ -238,8 +238,8 @@ export const mockOrders: Order[] = [
     total: 2500,
     status: 'on-the-way',
     createdAt: '2026-03-12T12:15:00Z',
-    deliveryAddress: '123 Allen Avenue, Ikeja, Lagos',
-    paymentMethod: 'OPay',
+    deliveryAddress: 'Kwara State University, Malate, Ilorin',
+    paymentMethod: 'Paystack',
     paymentStatus: 'paid',
   },
 ];

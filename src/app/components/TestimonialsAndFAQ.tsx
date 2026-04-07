@@ -4,67 +4,51 @@ import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 
 const faqs = [
   {
-    q: 'How long does delivery take?',
-    a: 'Most orders arrive within 20 to 45 minutes depending on your location and the vendor. You\'ll see a live estimated time when you place your order.',
+    q: 'How long does delivery usually take?',
+    a: "Honestly it depends on where you are and how busy the vendor is, but most orders get to you in 20 to 40 minutes. When you check out you'll see an estimated time — it's usually pretty accurate.",
   },
   {
-    q: 'Can I order from multiple vendors at the same time?',
-    a: 'Right now each order is from one vendor at a time — this lets us keep delivery fast and food hot. We\'re working on multi-vendor carts for a future update.',
+    q: 'Can I order from more than one vendor at once?',
+    a: "Not yet — each order is tied to one vendor for now. It's mainly to make sure your food stays hot and doesn't sit around waiting. We know it's a limitation and we're working on it.",
   },
   {
-    q: 'How do I pay for my order?',
-    a: 'We use OPay Cashier for secure payment. You\'ll be redirected to the OPay checkout screen after confirming your order.',
+    q: 'How do I pay?',
+    a: "We use Paystack, so you can pay with your card, bank transfer, or USSD — whatever works for you. It's the same checkout flow you'd see on most Nigerian apps, so nothing unfamiliar.",
   },
   {
-    q: 'What happens if a vendor is showing as closed?',
-    a: 'Vendors set their own operating hours. If they\'re closed you can still browse their menu and place an order for when they re-open, or pick an alternative vendor.',
+    q: "A vendor shows as closed — what do I do?",
+    a: "Vendors set their own hours, so sometimes they're just not open yet or they've closed for the day. You can check back later or just pick a different vendor. We're also looking at adding a \"notify me when open\" option.",
   },
   {
-    q: 'Can I cancel or change my order?',
-    a: 'You can cancel within 2 minutes of placing your order. After that, the kitchen has usually already started preparing it. Reach out to support and we\'ll do our best to help.',
+    q: 'What if I need to cancel after ordering?',
+    a: "You have a small window — about 2 minutes — right after placing the order. Once the kitchen picks it up we can't pull it back. If something goes wrong though, just message support and we'll sort it out.",
   },
 ];
 
 const testimonials = [
   {
-    name: 'Amaka O.',
-    location: 'Ikeja, Lagos',
+    name: 'Victor O.',
+    location: 'Westend, KWASU Malate',
     rating: 5,
-    text: 'I ordered egusi soup from Choplife on a Sunday afternoon and it arrived in under 35 minutes, still steaming. It tasted exactly like home. I\'ve reordered three times since.',
+    text: "Ordered egusi and fufu from Choplife on a Sunday when I was too tired to go out. It came in like 32 minutes and was still hot. Genuinely tasted like something my aunt would make. I've ordered from them 4 times since.",
     vendor: 'Choplife',
-    avatar: '🧕',
+    avatar: '/Victor.jpeg',
   },
   {
-    name: 'Tunde B.',
-    location: 'Surulere, Lagos',
+    name: 'Moment',
+    location: 'Safari, KWASU Malate',
     rating: 5,
-    text: 'BK 46\'s grilled chicken platter is unreal. I usually dread waiting for food delivery but Light House has genuinely changed that. The app is clean, the process is simple, and the food always shows up on time.',
+    text: "BK 46 grilled chicken is not a joke. I wasn't even expecting much the first time but it came well packaged and the portion was actually worth the price. Light House is the only delivery app I actually trust on campus.",
     vendor: 'BK 46',
-    avatar: '👨🏾',
+    avatar: '/Moment.jpeg',
   },
   {
-    name: 'Chinyere A.',
-    location: 'Lekki, Lagos',
+    name: 'Emmanuel A.',
+    location: 'Safari, KWASU Malate',
     rating: 5,
-    text: 'Five Star Bevery\'s zobo is the best I\'ve had outside of my mum\'s kitchen. Cold, gingery, perfectly sweetened. I order it at least twice a week now.',
-    vendor: 'Five Star Bevery',
-    avatar: '👩🏾',
-  },
-  {
-    name: 'Emeka N.',
-    location: 'Yaba, Lagos',
-    rating: 5,
-    text: 'DAPS Kitchen served native jollof at 8pm on a Tuesday and it was perfect. The rider was polite and on time. Can\'t ask for more than that.',
+    text: "I ordered from DAPS Kitchen during a late night study session and it came faster than I expected. Food was hot, packaging was intact, and the tracker actually worked — I could see when the rider left. Small thing but it made a difference.",
     vendor: 'DAPS Kitchen',
-    avatar: '🧔🏾',
-  },
-  {
-    name: 'Funmi L.',
-    location: 'Ajah, Lagos',
-    rating: 5,
-    text: 'I used to cook every day because I didn\'t trust delivery apps. Light House changed that. The vendors actually care about the food they put out and it shows.',
-    vendor: 'Bissy Joy',
-    avatar: '👩🏽',
+    avatar: '/Emmanuel.jpeg',
   },
 ];
 
@@ -127,7 +111,7 @@ export function TestimonialsAndFAQ() {
           {/* Slide */}
           <div className={`transition-all duration-[380ms] ease-out ${slideClass}`}>
             <div className="bg-white/70 border border-amber-100 backdrop-blur-sm rounded-3xl p-8 sm:p-12 max-w-3xl mx-auto shadow-lg">
-              <Quote className="w-10 h-10 text-amber-400 mb-6" />
+              <Quote className="w-4 h-4 text-amber-400 mb-4" />
 
               <p className="text-slate-800 text-xl sm:text-2xl leading-relaxed font-light">
                 "{t.text}"
@@ -135,8 +119,8 @@ export function TestimonialsAndFAQ() {
 
               <div className="mt-8 flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-2xl">
-                    {t.avatar}
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-200 flex-shrink-0">
+                    <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <p className="font-bold text-slate-900">{t.name}</p>
@@ -145,7 +129,7 @@ export function TestimonialsAndFAQ() {
                 </div>
                 <div className="flex gap-1">
                   {[...Array(t.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-primary fill-primary" />
+                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                   ))}
                 </div>
               </div>
