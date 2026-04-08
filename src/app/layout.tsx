@@ -3,6 +3,9 @@ import '../styles/index.css';
 export const metadata = {
   title: 'Light House Logistics',
   description: 'Food ordering platform',
+  icons: {
+    icon: '/logo.jpeg',
+  },
 };
 
 export default function RootLayout({
