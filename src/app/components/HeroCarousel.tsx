@@ -80,8 +80,8 @@ const vendors = [
   {
     id: 5,
     name: 'Choplife',
-    tag: 'West African Cuisine',
-    description: 'Authentic West African dishes bursting with flavour. Fufu, soups, and more — cooked with tradition.',
+    tag: 'Nigerian Cuisine',
+    description: 'Authentic Nigerian dishes bursting with flavour. Party Jollof, stir fry, and more — cooked with love.',
     rating: 4.8,
     delivery: '30–40 min',
     image: '/Nigeria Jollof and turkey.jfif',
