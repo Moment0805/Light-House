@@ -5,15 +5,20 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card } from '../components/ui/card';
-import { Lightbulb, Loader2 } from 'lucide-react';
+import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
+import { getErrorMessage } from '../lib/error';
 
 export function SignUp() {
-  const [name, setName] = useState('');
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [phone, setPhone] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   const { signup } = useAuth();
   const navigate = useNavigate();
 
@@ -30,13 +35,31 @@ export function SignUp() {
       return;
     }
 
+    const trimmedName = fullName.trim();
+
+    if (!trimmedName) {
+      toast.error('Full name is required');
+      return;
+    }
+
+    const nameParts = trimmedName.split(/\s+/);
+
+    if (nameParts.length < 2) {
+      toast.error('Please enter your first and last name');
+      return;
+    }
+
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(' ');
+
     setIsLoading(true);
+
     try {
-      await signup(email, password, name);
+      await signup(email, password, firstName, lastName, phone);
       toast.success('Account created successfully!');
       navigate('/vendors');
     } catch (error) {
-      toast.error('Failed to create account. Please try again.');
+      toast.error(getErrorMessage(error, 'Failed to create account. Please try again.'));
     } finally {
       setIsLoading(false);
     }
@@ -53,9 +76,7 @@ export function SignUp() {
 
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight mb-2">Create Account</h1>
-          <p className="text-slate-500">
-            Join Light House Logistics today
-          </p>
+          <p className="text-slate-500">Join Light House Logistics today</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -64,9 +85,9 @@ export function SignUp() {
             <Input
               id="name"
               type="text"
-              placeholder="John Doe"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              placeholder="Oluwa Moment"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               required
               className="mt-1.5 bg-input-background"
             />
@@ -86,29 +107,60 @@ export function SignUp() {
           </div>
 
           <div>
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="phone">Phone Number</Label>
             <Input
-              id="password"
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              id="phone"
+              type="tel"
+              placeholder="091****6789"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               required
               className="mt-1.5 bg-input-background"
             />
           </div>
 
           <div>
+            <Label htmlFor="password">Password</Label>
+            <div className="relative mt-1.5">
+              <Input
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="bg-input-background pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 transition-colors focus:outline-none"
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
+          </div>
+
+          <div>
             <Label htmlFor="confirmPassword">Confirm Password</Label>
-            <Input
-              id="confirmPassword"
-              type="password"
-              placeholder="••••••••"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              className="mt-1.5 bg-input-background"
-            />
+            <div className="relative mt-1.5">
+              <Input
+                id="confirmPassword"
+                type={showConfirmPassword ? 'text' : 'password'}
+                placeholder="••••••••"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                className="bg-input-background pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 transition-colors focus:outline-none"
+              >
+                {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
           </div>
 
           <Button

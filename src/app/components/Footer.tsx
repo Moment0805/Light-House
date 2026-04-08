@@ -1,5 +1,7 @@
 import { Link } from 'react-router';
-import { Lightbulb, Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Lightbulb, Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { FaXTwitter } from "react-icons/fa6";
+
 
 export function Footer() {
   return (
@@ -31,7 +33,7 @@ export function Footer() {
                 href="#"
                 className="w-9 h-9 rounded-lg bg-muted hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-colors"
               >
-                <Twitter className="w-4 h-4" />
+                <FaXTwitter className="w-4 h-4" />
               </a>
               <a
                 href="#"
@@ -57,14 +59,14 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-accent transition-colors">
+                <Link to="/help" className="text-sm text-muted-foreground hover:text-accent transition-colors">
                   Help Center
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-accent transition-colors">
+                <Link to="/terms" className="text-sm text-muted-foreground hover:text-accent transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -75,7 +77,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <Phone className="w-4 h-4 mt-0.5 text-accent" />
-                <span>+234 800 123 4567</span>
+                <span>+234 707 616 5441</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <Mail className="w-4 h-4 mt-0.5 text-accent" />
@@ -83,7 +85,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-0.5 text-accent" />
-                <span>Lagos, Nigeria</span>
+                <span>Kwara State University, Ilorin, Nigeria</span>
               </li>
             </ul>
           </div>

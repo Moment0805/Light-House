@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Clock, Star } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import Lottie from 'lottie-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // ── Vendor data ───────────────────────────────────────────────
 const vendors = [
@@ -15,13 +16,13 @@ const vendors = [
     description: 'Home of the boldest grills and signature burgers in town. Every bite is flame-kissed perfection.',
     rating: 4.8,
     delivery: '20–30 min',
-    image: '/Jollof Rice & Chicken.jfif',
+    image: '/Nigerian Native Jollof Rice.jfif',
     thumbnails: [
-      { img: '/Steamy Nigeria Jollof.jfif', name: 'Jollof Classic', price: '₦1,800' },
+      { img: '/Nigeria Jollof and turkey.jfif', name: 'Jollof with turkey', price: '₦4,500' },
       { img: '/Nigerian Native Jollof Rice.jfif', name: 'Native Special', price: '₦2,200' },
       { img: '/Egusi Soup.jfif', name: 'Soup Combo', price: '₦2,800' },
     ],
-    featured: { name: 'Grilled Chicken & Jollof', price: '₦2,500' },
+    featured: { name: 'Native Rice', price: '₦2,500' },
     badge: 'Top Rated',
     badgeColor: 'bg-amber-500',
   },
@@ -32,13 +33,13 @@ const vendors = [
     description: 'Rich, hearty Nigerian cuisine made the way mama intended. Comfort in every pot.',
     rating: 4.7,
     delivery: '25–35 min',
-    image: '/Nigerian Native Jollof Rice.jfif',
+    image: '/Jollof Rice & Chicken.jfif',
     thumbnails: [
-      { img: '/Egusi Soup.jfif', name: 'Egusi Soup', price: '₦2,800' },
+      { img: '/Food.jfif', name: 'Big Plate and turkey', price: '₦5,000' },
       { img: '/Jollof Rice & Chicken.jfif', name: 'Jollof & Chicken', price: '₦2,500' },
-      { img: '/Steamy Nigeria Jollof.jfif', name: 'Steamy Jollof', price: '₦1,800' },
+      { img: '/Nigeria Jollof and turkey.jfif', name: 'Steamy Jollof', price: '₦4,500' },
     ],
-    featured: { name: 'Native Jollof Rice', price: '₦2,000' },
+    featured: { name: 'Big Plate Jollof and chicken', price: '₦3,000' },
     badge: 'Fan Favourite',
     badgeColor: 'bg-green-600',
   },
@@ -49,47 +50,47 @@ const vendors = [
     description: 'Quick, satisfying snacks and small plates for when hunger strikes between meals.',
     rating: 4.6,
     delivery: '15–25 min',
-    image: '/Steamy Nigeria Jollof.jfif',
+    image: '/noodles.jfif',
     thumbnails: [
       { img: '/Jollof Rice & Chicken.jfif', name: 'Combo Meal', price: '₦2,000' },
       { img: '/Nigerian Native Jollof Rice.jfif', name: 'Rice Bowl', price: '₦1,500' },
-      { img: '/25 Authentic Nigerian Dinner Recipes.jfif', name: 'Mixed Platter', price: '₦3,000' },
+      { img: '/Chicken Shawarma.jfif', name: 'Chicken Sharwama', price: '₦3,500' },
     ],
-    featured: { name: 'Jollof & Moi Moi', price: '₦1,800' },
+    featured: { name: 'Tee muchies noodles experience', price: '₦2,500' },
     badge: 'Quick Delivery',
     badgeColor: 'bg-purple-600',
   },
   {
     id: 4,
     name: 'Five Star Bevery',
-    tag: 'Drinks & Beverages',
-    description: 'Refreshing drinks, cold beverages, and fresh juices to quench every thirst beautifully.',
+    tag: 'Pastries & Cakes',
+    description: 'Freshly baked breads, pastries, and cakes',
     rating: 4.9,
     delivery: '10–20 min',
-    image: '/WhatsApp Image 2026-03-10 at 16.21.27.jpeg',
+    image: '/4 Ingredient Chocolate Bread (No Butter or Oil).jfif',
     thumbnails: [
-      { img: '/WhatsApp Image 2026-03-10 at 16.21.27 (1).jpeg', name: 'Fruit Punch', price: '₦800' },
-      { img: '/WhatsApp Image 2026-03-10 at 16.21.28.jpeg', name: 'Cold Brew', price: '₦1,200' },
-      { img: '/WhatsApp Image 2026-03-10 at 16.21.28 (1).jpeg', name: 'Smoothie', price: '₦1,500' },
+      { img: '/jelly donut.jfif', name: 'Jelly donut', price: '₦1,000' },
+      { img: '/sardine bread.jfif', name: 'Sardine bread', price: '₦1,600' },
+      { img: '/sausage roll.jfif', name: 'Sausage roll', price: '₦800' },
     ],
-    featured: { name: 'Signature Fruit Punch', price: '₦800' },
-    badge: 'Best Drinks',
+    featured: { name: 'Mixed Fruit', price: '₦1,500' },
+    badge: 'Awesomely Made',
     badgeColor: 'bg-cyan-600',
   },
   {
     id: 5,
     name: 'Choplife',
-    tag: 'West African Cuisine',
-    description: 'Authentic West African dishes bursting with flavour. Fufu, soups, and more — cooked with tradition.',
+    tag: 'Nigerian Cuisine',
+    description: 'Authentic Nigerian dishes bursting with flavour. Party Jollof, stir fry, and more — cooked with love.',
     rating: 4.8,
     delivery: '30–40 min',
-    image: '/Egusi Soup.jfif',
+    image: '/Nigeria Jollof and turkey.jfif',
     thumbnails: [
-      { img: '/Making Nigerian Afang Soup Recipe - Dream Africa.jfif', name: 'Afang Soup', price: '₦3,200' },
-      { img: '/Nigerian Native Jollof Rice.jfif', name: 'Native Jollof', price: '₦2,000' },
-      { img: '/25 Authentic Nigerian Dinner Recipes.jfif', name: 'Dinner Special', price: '₦3,500' },
+      { img: '/Steamy Nigeria Jollof.jfif', name: 'Morning Jollof', price: '₦1,500' },
+      { img: '/Jollof Rice & Chicken.jfif', name: 'Breakfast Plate', price: '₦2,500' },
+      { img: '/Nigerian Native Jollof Rice.jfif', name: 'Rice & Protein', price: '₦2,000' },
     ],
-    featured: { name: 'Egusi Soup & Fufu', price: '₦2,800' },
+    featured: { name: 'Jollof rice and turkey', price: '₦4,500' },
     badge: 'Trending',
     badgeColor: 'bg-orange-600',
   },
@@ -100,13 +101,12 @@ const vendors = [
     description: 'A stadium of flavours with continental dishes and local classics for every palate and mood.',
     rating: 4.5,
     delivery: '25–35 min',
-    image: '/25 Authentic Nigerian Dinner Recipes.jfif',
+    image: '/Jollof Rice & Chicken.jfif',
     thumbnails: [
       { img: '/Jollof Rice & Chicken.jfif', name: 'Chicken Plate', price: '₦2,500' },
       { img: '/Steamy Nigeria Jollof.jfif', name: 'Jollof Bowl', price: '₦1,800' },
-      { img: '/Egusi Soup.jfif', name: 'Soup Pot', price: '₦2,800' },
     ],
-    featured: { name: 'Mixed Platter', price: '₦3,500' },
+    featured: { name: 'Extra Rice and chicken', price: '₦3,000' },
     badge: "Chef's Pick",
     badgeColor: 'bg-blue-600',
   },
@@ -119,9 +119,9 @@ const vendors = [
     delivery: '20–30 min',
     image: '/Breakfast served by Chat GPT😍😋_   Prompt_ A….jfif',
     thumbnails: [
-      { img: '/Steamy Nigeria Jollof.jfif', name: 'Morning Jollof', price: '₦1,500' },
-      { img: '/Jollof Rice & Chicken.jfif', name: 'Breakfast Plate', price: '₦2,200' },
-      { img: '/Nigerian Native Jollof Rice.jfif', name: 'Rice & Protein', price: '₦2,000' },
+      { img: '/Making Nigerian Afang Soup Recipe - Dream Africa.jfif', name: 'Afang Soup', price: '₦3,200' },
+      { img: '/Nigerian Native Jollof Rice.jfif', name: 'Native Jollof', price: '₦2,000' },
+      { img: '/25 Authentic Nigerian Dinner Recipes.jfif', name: 'Dinner Special', price: '₦3,500' },
     ],
     featured: { name: 'Full Breakfast Combo', price: '₦2,200' },
     badge: 'Morning Special',
@@ -131,17 +131,17 @@ const vendors = [
     id: 8,
     name: 'Bukateria',
     tag: 'Supermart & Groceries',
-    description: 'Your neighbourhood supermart. Fresh groceries, staples, and everyday essentials delivered fast.',
+    description: 'Your neighbourhood supermart and resturant. Fresh groceries,delicious dishes, staples, and everyday essentials delivered fast.',
     rating: 4.6,
     delivery: '35–50 min',
-    image: '/market.jpeg',
+    image: '/25 Authentic Nigerian Dinner Recipes.jfif',
     thumbnails: [
-      { img: '/WhatsApp Image 2026-03-10 at 16.21.29.jpeg', name: 'Fresh Produce', price: '₦2,000' },
-      { img: '/WhatsApp Image 2026-03-10 at 16.21.29 (1).jpeg', name: 'Pantry Bundle', price: '₦3,500' },
-      { img: '/WhatsApp Image 2026-03-10 at 16.21.29 (2).jpeg', name: 'Weekly Pack', price: '₦7,000' },
+      { img: '/hake fish.jfif', name: 'Hake Fish', price: '₦3,000' },
+      { img: '/Nigerian meat pie', name: 'Meat pie', price: '₦700' },
+      { img: '/moi moi.jfif', name: 'moi moi', price: '₦1,000' },
     ],
-    featured: { name: 'Fresh Market Bundle', price: '₦5,000+' },
-    badge: 'Supermart',
+    featured: { name: 'Mixed platter', price: '₦3,000+' },
+    badge: 'Supermart and resturant',
     badgeColor: 'bg-emerald-600',
   },
 ];
@@ -166,14 +166,9 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
 
   // ── Slide transition ──────────────────────────────────────────
   const goTo = useCallback((index: number, dir: 'left' | 'right' = 'right') => {
-    if (isAnimating) return;
-    setIsAnimating(true);
     setDirection(dir);
-    setTimeout(() => {
-      setCurrent(index);
-      setIsAnimating(false);
-    }, 400); // matches the CSS duration
-  }, [isAnimating]);
+    setCurrent(index);
+  }, []);
 
   const next = useCallback(() => {
     const nextIndex = (current + 1) % totalSlides;
@@ -217,12 +212,25 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
   const isIntro = current === 0;
   const vendor = vendors[current - 1];
 
-  // Slide class
-  const slideClass = isAnimating
-    ? direction === 'right'
-      ? 'translate-x-[-3%] opacity-0'
-      : 'translate-x-[3%] opacity-0'
-    : 'translate-x-0 opacity-100';
+  const variants = {
+    enter: (direction: 'left' | 'right') => ({
+      x: direction === 'right' ? 100 : -100,
+      opacity: 0,
+      scale: 0.98,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction: 'left' | 'right') => ({
+      zIndex: 0,
+      x: direction === 'right' ? -100 : 100,
+      opacity: 0,
+      scale: 0.98,
+    }),
+  };
 
   return (
     <section
@@ -234,29 +242,38 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-amber-100/40 rounded-full blur-3xl pointer-events-none" />
 
       {/* ── Slide content ───────────────────────────────────────── */}
-      <div
-        className={`
-          transition-all duration-[400ms] ease-in-out
-          ${slideClass}
-          w-full h-full flex items-center
-        `}
-      >
-        {isIntro ? (
+      <div className="w-full h-full flex items-center absolute inset-0 pt-16">
+        <AnimatePresence initial={false} custom={direction} mode="wait">
+          <motion.div
+            key={current}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 100, damping: 25 },
+              opacity: { duration: 0.6 },
+              scale: { duration: 0.8 }
+            }}
+            className="w-full absolute inset-0 flex items-center"
+          >
+            {isIntro ? (
           /* ── SLIDE 0: Brand intro ──────────────────────────── */
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 grid lg:grid-cols-2 gap-6 items-center" style={{ minHeight: '88vh' }}>
             {/* Left: text */}
-            <div className="space-y-7">
-              <Badge className="bg-primary/10 text-primary border-primary/20 font-semibold text-sm px-4 py-1.5 rounded-full">
-                🚀 Fast & Reliable Delivery
+            <div className="space-y-7 text-center lg:text-left pt-20 lg:pt-0">
+              <Badge className="hidden lg:inline-flex bg-primary/10 text-primary border-primary/20 font-semibold text-sm px-4 py-1.5 rounded-full">
+                 Fast & Reliable Delivery
               </Badge>
-              <h1 className="text-5xl lg:text-[5.5rem] font-extrabold text-slate-900 leading-[1.0] tracking-tight">
+              <h1 className="text-4xl lg:text-[5rem] font-extrabold text-slate-900 leading-[1.0] tracking-tight">
                 Comfort Food<br />
                 <span className="text-primary">Delivered Fast</span>
               </h1>
-              <p className="text-slate-500 text-lg leading-relaxed max-w-md">
-                Light House connects you with the best local vendors in Lagos. Fresh, hot food — delivered with care, every single time.
+              <p className="text-slate-500 text-lg leading-relaxed max-w-md mx-auto lg:mx-0">
+                Light House connects you with the best local vendors in KWASU. Fresh, hot food — delivered with care, every single time.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                 {isAuthenticated ? (
                   <Link to="/vendors">
                     <Button size="lg" className="bg-primary hover:bg-primary/90 text-white h-14 px-8 text-base font-bold rounded-full shadow-lg shadow-primary/20">
@@ -279,7 +296,7 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
                 )}
               </div>
               {/* Stats row */}
-              <div className="flex gap-8 pt-2">
+              <div className="flex gap-8 pt-2 justify-center lg:justify-start">
                 <div>
                   <p className="text-2xl font-extrabold text-slate-900">4.8★</p>
                   <p className="text-xs text-slate-400 font-medium">Avg Rating</p>
@@ -310,11 +327,11 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
           </div>
         ) : (
           /* ── SLIDES 1-8: Vendor spotlight ───────────────────── */
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 flex items-center gap-6 lg:gap-10"
+          <div className="w-full max-w-7xl mx-auto  px-4 sm:px-8 lg:px-12 py-8 lg:py-16 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-10"
             style={{ minHeight: '88vh' }}>
 
             {/* ── Left: vendor desc ── */}
-            <div className="w-full lg:w-[32%] shrink-0 space-y-5 z-10">
+            <div className="w-full lg:w-[32%] shrink-0 space-y-5 z-10 pt-16 lg:pt-0">
               <div className="flex items-center gap-2">
                 <Badge className={`${vendor.badgeColor} text-white border-0 text-xs font-bold px-3 py-1 rounded-full`}>
                   {vendor.badge}
@@ -366,9 +383,9 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
             </div>
 
             {/* ── Center-right: hero food image ── */}
-            <div className="hidden lg:flex flex-1 items-center justify-center relative">
-              <div className="absolute w-[420px] h-[420px] bg-primary/10 rounded-full blur-3xl" />
-              <div className="relative w-[400px] h-[420px] xl:w-[460px] xl:h-[480px] rounded-[2.5rem] overflow-hidden shadow-2xl ring-4 ring-white">
+            <div className="flex lg:flex-1 items-center justify-center relative mb-8 lg:mb-0 w-full max-w-[280px] sm:max-w-[340px] lg:max-w-none mx-auto lg:mx-0">
+              <div className="absolute w-[100%] h-[100%] bg-primary/10 rounded-full blur-3xl" />
+              <div className="relative w-full aspect-square lg:aspect-auto lg:w-[400px] lg:h-[420px] xl:w-[460px] xl:h-[480px] rounded-[2.5rem] overflow-hidden shadow-2xl ring-4 ring-white">
                 <img
                   src={vendor.image}
                   alt={vendor.featured.name}
@@ -414,6 +431,8 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
             </div>
           </div>
         )}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* ── Navigation ───────────────────────────────────────────── */}

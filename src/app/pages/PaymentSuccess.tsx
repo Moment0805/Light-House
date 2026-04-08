@@ -37,7 +37,7 @@ export function PaymentSuccess() {
             </div>
             <div className="flex justify-between items-center text-sm">
               <span className="text-slate-500">Payment Method</span>
-              <span className="font-bold text-slate-900">OPay</span>
+              <span className="font-bold text-slate-900">Paystack</span>
             </div>
             <div className="flex justify-between items-center text-sm border-t border-slate-200 pt-3 mt-1">
               <span className="text-slate-500">Status</span>

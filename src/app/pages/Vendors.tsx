@@ -19,6 +19,8 @@ const CATEGORY_ICONS: Record<Category, string> = {
   Breakfast: '🌅',
 };
 
+import { CautionBanner } from '../components/CautionBanner';
+
 export function Vendors() {
   const [vendors, setVendors] = useState<Vendor[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -51,10 +53,33 @@ export function Vendors() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#FAFAF9] flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-slate-400 text-sm">Loading vendors...</p>
+      <div className="min-h-screen bg-[#FAFAF9]">
+        <CautionBanner />
+        <div className="bg-white border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div className="max-w-xs h-4 bg-slate-200 rounded animate-pulse mb-3" />
+            <div className="w-64 h-10 bg-slate-200 rounded animate-pulse mb-4" />
+            <div className="w-48 h-4 bg-slate-200 rounded animate-pulse" />
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {/* Skeleton Cards */}
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm animate-pulse">
+                <div className="w-full h-40 bg-slate-200 rounded-xl mb-4" />
+                <div className="flex justify-between items-start mb-2">
+                  <div className="w-2/3 h-5 bg-slate-200 rounded" />
+                  <div className="w-10 h-5 bg-slate-200 rounded" />
+                </div>
+                <div className="w-3/4 h-3 bg-slate-200 rounded mb-4" />
+                <div className="flex gap-2">
+                  <div className="w-16 h-5 bg-slate-200 rounded" />
+                  <div className="w-16 h-5 bg-slate-200 rounded" />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -76,12 +101,13 @@ export function Vendors() {
 
   return (
     <div className="min-h-screen bg-[#FAFAF9]">
+      <CautionBanner />
       {/* ── Page Hero ── */}
       <div className="bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <p className="text-primary font-semibold text-sm mb-1">🏪 Discover</p>
+              <p className="text-primary font-semibold text-sm mb-1">Discover</p>
               <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">Our Vendors</h1>
               <p className="text-slate-500 mt-2 text-sm">
                 {openCount} of {vendors.length} vendors open now · Delivery from ₦300
@@ -102,7 +128,7 @@ export function Vendors() {
 
           {/* ── Category filter tabs ── */}
           <div className="flex items-center gap-2 mt-6 overflow-x-auto pb-1 scrollbar-hide">
-            {CATEGORIES.map((cat) => (
+            {/* {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
@@ -115,7 +141,7 @@ export function Vendors() {
                 <span>{CATEGORY_ICONS[cat]}</span>
                 {cat}
               </button>
-            ))}
+            ))} */}
 
             {/* Open only toggle */}
             <button

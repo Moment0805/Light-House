@@ -18,6 +18,7 @@ export interface AuthResponse {
   user: {
     id: string;
     email: string;
+    phone?: string;
     firstName: string;
     lastName: string;
     role: string;
@@ -40,7 +41,7 @@ export const authService = {
     api.post<{ data: { accessToken: string } }>('/auth/refresh').then((r) => r.data.data),
 
   getMe: () =>
-    api.get<{ data: AuthResponse['user'] }>('/auth/me').then((r) => r.data.data),
+    api.get<{ data: AuthResponse['user'] }>('/users/me').then((r) => r.data.data),
 
   forgotPassword: (email: string) =>
     api.post('/auth/forgot-password', { email }),

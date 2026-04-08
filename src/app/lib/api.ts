@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosError } from 'axios';
 import { tokenStore } from './token.store';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/v1';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 
 let isRefreshing = false;
 let refreshQueue: Array<(token: string) => void> = [];
@@ -54,17 +54,28 @@ api.interceptors.response.use(
           {},
           { withCredentials: true },
         );
-        const newToken: string = data.data.accessToken;
+        const newToken: string = data.accessToken;
         tokenStore.set(newToken);
         processQueue(newToken);
         if (originalRequest.headers) {
           originalRequest.headers.Authorization = `Bearer ${newToken}`;
         }
         return api(originalRequest);
-      } catch {
+      } catch (refreshError: any) {
         tokenStore.clear();
-        // Dispatch a custom event so AuthContext can react (redirect to login)
+        // Dispatch custom event so AuthContext clears its user state
         window.dispatchEvent(new CustomEvent('auth:logout'));
+
+        // Only hard-redirect to login with the "expired" flag if:
+        // 1. The user was previously authenticated (had a token, so this is a real expiry, not a first-load guest)
+        // 2. We're not already on the login page (prevents infinite reload loop)
+        const alreadyOnLogin = window.location.pathname.startsWith('/login');
+        const hadSession = refreshError.response?.status === 401 && !alreadyOnLogin;
+
+        if (hadSession) {
+          window.location.href = '/login?expired=true';
+        }
+
         return Promise.reject(error);
       } finally {
         isRefreshing = false;

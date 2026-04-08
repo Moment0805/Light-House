@@ -4,6 +4,7 @@ import { ArrowLeft, Package, CheckCircle, Clock, Truck, MapPin, CreditCard, Load
 import { io, Socket } from 'socket.io-client';
 import { ordersService, Order } from '../services/orders.service';
 import { tokenStore } from '../lib/token.store';
+import { paymentsService } from '../services/payments.service';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { OrderStatusBadge } from '../components/OrderStatusBadge';
@@ -25,6 +26,8 @@ export function OrderTracking() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
   // 1. Initial fetch
   useEffect(() => {
     if (!orderId) return;
@@ -35,11 +38,26 @@ export function OrderTracking() {
       .finally(() => setIsLoading(false));
   }, [orderId]);
 
+  // Active re-fetch — forces backend to verify with payment gateway
+  const refreshOrder = async () => {
+    if (!orderId || isRefreshing) return;
+    setIsRefreshing(true);
+    try {
+      await paymentsService.verifyOrder(orderId); // Tell backend to check Paystack/OPay API
+      const updated = await ordersService.getOne(orderId);
+      setOrder(updated);
+    } catch {
+      // silently ignore — order stays as-is
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
   // 2. WebSocket connection for live updates
   useEffect(() => {
     if (!orderId || !order) return;
 
-    const wsUrl = import.meta.env.VITE_WS_URL || 'http://localhost:3001';
+    const wsUrl = (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_WS_URL) || 'http://localhost:3001';
     const socket: Socket = io(wsUrl, {
       path: '/tracking', // matches the NestJS gateway namespace/path
       auth: { token: tokenStore.get() },
@@ -111,13 +129,19 @@ export function OrderTracking() {
 
           {order.status === 'PAYMENT_PENDING' && (
             <div className="mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
-              <p className="text-amber-800 font-medium text-sm flex items-center justify-between">
-                <span>Waiting for payment confirmation.</span>
-                <Link to="/payment/processing">
-                  <Button size="sm" className="bg-amber-600 hover:bg-amber-700 text-white rounded-full text-xs h-8">
-                    Complete Payment
-                  </Button>
-                </Link>
+              <p className="text-gray-600 font-medium text-sm flex items-center justify-between gap-3 flex-wrap">
+                <span> Payment is pending. If you already paid, click refresh to check.</span>
+                <button
+                  onClick={refreshOrder}
+                  disabled={isRefreshing}
+                  className="bg-amber-600 hover:bg-amber-700 disabled:opacity-60 text-white rounded-full text-xs h-8 px-3 font-semibold shrink-0 flex items-center gap-1.5"
+                >
+                  {isRefreshing ? (
+                    <><Loader2 className="w-3 h-3 animate-spin" /> Checking...</>
+                  ) : (
+                    'Refresh Status'
+                  )}
+                </button>
               </p>
             </div>
           )}
@@ -146,6 +170,8 @@ export function OrderTracking() {
                   {statusSteps.map((step, index) => {
                     const isCompleted = index <= currentStepIndex;
                     const isCurrent = index === currentStepIndex;
+                    // Show loading ring only if it's the immediate next step AFTER payment has been confirmed
+                    const isNext = index === currentStepIndex + 1 && currentStepIndex >= 2 && currentStepIndex < statusSteps.length - 1;
                     const Icon = step.icon;
 
                     return (
@@ -158,14 +184,21 @@ export function OrderTracking() {
                           />
                         )}
 
-                        <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 z-10 transition-colors ${
-                            isCompleted
-                              ? 'bg-primary text-white shadow-md shadow-primary/20'
-                              : 'bg-slate-100 text-slate-400'
-                          } ${isCurrent ? 'ring-4 ring-primary/20 animate-pulse' : ''}`}
-                        >
-                          <Icon className="w-5 h-5" />
+                        <div className="relative shrink-0 flex items-center justify-center">
+                          {/* Pulsing Next Step Loading Ring */}
+                          {isNext && (
+                            <div className="absolute -inset-1.5 rounded-full border-[3px] border-slate-100 border-t-primary animate-[spin_3s_linear_infinite]" />
+                          )}
+                          
+                          <div
+                            className={`w-10 h-10 rounded-full flex items-center justify-center z-10 transition-colors ${
+                              isCompleted
+                                ? 'bg-primary text-white shadow-md shadow-primary/20'
+                                : 'bg-slate-100 text-slate-400'
+                            } ${isCurrent ? 'ring-4 ring-primary/20 animate-pulse' : ''}`}
+                          >
+                            <Icon className="w-5 h-5 relative z-20" />
+                          </div>
                         </div>
 
                         <div className="pt-2">

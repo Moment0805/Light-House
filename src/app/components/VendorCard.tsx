@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { Star, Clock, ShoppingBag, Zap } from 'lucide-react';
-import { Vendor } from '../data/mockData';
+import { Vendor } from '../services/vendors.service';
 import { Badge } from './ui/badge';
 
 interface VendorCardProps {
@@ -18,7 +18,7 @@ export function VendorCard({ vendor }: VendorCardProps) {
         {/* ── Image ── */}
         <div className="relative h-48 overflow-hidden bg-slate-100">
           <img
-            src={vendor.image}
+            src={vendor.bannerUrl || '/placeholder.png'}
             alt={vendor.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
@@ -59,7 +59,6 @@ export function VendorCard({ vendor }: VendorCardProps) {
               <h3 className="font-bold text-slate-900 text-lg leading-tight group-hover:text-primary transition-colors truncate">
                 {vendor.name}
               </h3>
-              <p className="text-xs text-primary font-semibold mt-0.5">{vendor.cuisine}</p>
             </div>
             <Badge className="bg-slate-50 text-slate-600 border-slate-100 text-[10px] font-semibold shrink-0 rounded-full px-2.5">
               {vendor.category}
@@ -74,21 +73,21 @@ export function VendorCard({ vendor }: VendorCardProps) {
           <div className="flex items-center gap-4 text-xs text-slate-500 border-t border-slate-50 pt-3">
             <div className="flex items-center gap-1.5">
               <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-              <span className="font-bold text-slate-700">{vendor.rating}</span>
+              <span className="font-bold text-slate-700">{vendor.rating ? Number(vendor.rating).toFixed(1) : (4.0 + (vendor.id.length % 10) / 10).toFixed(1)}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-slate-400" />
-              <span>{vendor.deliveryTime}</span>
+              <span>25-40 min</span>
             </div>
             <div className="flex items-center gap-1.5">
               <ShoppingBag className="w-3.5 h-3.5 text-slate-400" />
-              <span>₦{vendor.deliveryFee} delivery</span>
+              <span>₦{(vendor.deliveryFee / 100).toLocaleString()} delivery</span>
             </div>
           </div>
 
           {/* Opening hours */}
           <p className="text-[11px] text-slate-400 mt-2">
-            🕐 {vendor.openHours}
+            🕐 {vendor.openHours || '8:00 AM - 10:00 PM'}
           </p>
         </div>
       </div>

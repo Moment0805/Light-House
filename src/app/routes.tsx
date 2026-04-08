@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router';
 import { Layout } from './components/Layout';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { GlobalError } from './components/GlobalError';
 import { Home } from './pages/Home';
 import { SignUp } from './pages/SignUp';
 import { Login } from './pages/Login';
@@ -11,11 +12,14 @@ import { VendorMenu } from './pages/VendorMenu';
 import { Cart } from './pages/Cart';
 import { Checkout } from './pages/Checkout';
 import { PaymentProcessing } from './pages/PaymentProcessing';
+import { PaymentVerify } from './pages/PaymentVerify';
 import { PaymentSuccess } from './pages/PaymentSuccess';
 import { PaymentFailure } from './pages/PaymentFailure';
 import { OrderHistory } from './pages/OrderHistory';
 import { OrderTracking } from './pages/OrderTracking';
 import { Profile } from './pages/Profile';
+import { Terms } from './pages/Terms';
+import { HelpCenter } from './pages/HelpCenter';
 
 function NotFound() {
   return (
@@ -38,12 +42,15 @@ export const router = createBrowserRouter([
   {
     path: '/',
     Component: Layout,
+    errorElement: <GlobalError />,
     children: [
       { index: true, Component: Home },
       { path: 'signup', Component: SignUp },
       { path: 'login', Component: Login },
       { path: 'forgot-password', Component: ForgotPassword },
       { path: 'reset-password', Component: ResetPassword },
+      { path: 'terms', Component: Terms },
+      { path: 'help', Component: HelpCenter },
       {
         path: 'vendors',
         element: (
@@ -77,10 +84,20 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        // Legacy polling page — kept for any in-flight OPay orders
         path: 'payment/processing',
         element: (
           <ProtectedRoute>
             <PaymentProcessing />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        // Paystack callback_url — Paystack redirects here after payment
+        path: 'payment/verify',
+        element: (
+          <ProtectedRoute>
+            <PaymentVerify />
           </ProtectedRoute>
         ),
       },
