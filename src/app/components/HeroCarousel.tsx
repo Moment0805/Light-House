@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Clock, Star } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import Lottie from 'lottie-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // ── Vendor data ───────────────────────────────────────────────
 const vendors = [
@@ -79,8 +80,8 @@ const vendors = [
   {
     id: 5,
     name: 'Choplife',
-    tag: 'West African Cuisine',
-    description: 'Authentic West African dishes bursting with flavour. Fufu, soups, and more — cooked with tradition.',
+    tag: 'Nigerian Cuisine',
+    description: 'Authentic Nigerian dishes bursting with flavour. Party Jollof, stir fry, and more — cooked with love.',
     rating: 4.8,
     delivery: '30–40 min',
     image: '/Nigeria Jollof and turkey.jfif',
@@ -165,14 +166,9 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
 
   // ── Slide transition ──────────────────────────────────────────
   const goTo = useCallback((index: number, dir: 'left' | 'right' = 'right') => {
-    if (isAnimating) return;
-    setIsAnimating(true);
     setDirection(dir);
-    setTimeout(() => {
-      setCurrent(index);
-      setIsAnimating(false);
-    }, 400); // matches the CSS duration
-  }, [isAnimating]);
+    setCurrent(index);
+  }, []);
 
   const next = useCallback(() => {
     const nextIndex = (current + 1) % totalSlides;
@@ -216,12 +212,25 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
   const isIntro = current === 0;
   const vendor = vendors[current - 1];
 
-  // Slide class
-  const slideClass = isAnimating
-    ? direction === 'right'
-      ? 'translate-x-[-3%] opacity-0'
-      : 'translate-x-[3%] opacity-0'
-    : 'translate-x-0 opacity-100';
+  const variants = {
+    enter: (direction: 'left' | 'right') => ({
+      x: direction === 'right' ? 100 : -100,
+      opacity: 0,
+      scale: 0.98,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction: 'left' | 'right') => ({
+      zIndex: 0,
+      x: direction === 'right' ? -100 : 100,
+      opacity: 0,
+      scale: 0.98,
+    }),
+  };
 
   return (
     <section
@@ -233,29 +242,38 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-amber-100/40 rounded-full blur-3xl pointer-events-none" />
 
       {/* ── Slide content ───────────────────────────────────────── */}
-      <div
-        className={`
-          transition-all duration-[400ms] ease-in-out
-          ${slideClass}
-          w-full h-full flex items-center
-        `}
-      >
-        {isIntro ? (
+      <div className="w-full h-full flex items-center absolute inset-0 pt-16">
+        <AnimatePresence initial={false} custom={direction} mode="wait">
+          <motion.div
+            key={current}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 100, damping: 25 },
+              opacity: { duration: 0.6 },
+              scale: { duration: 0.8 }
+            }}
+            className="w-full absolute inset-0 flex items-center"
+          >
+            {isIntro ? (
           /* ── SLIDE 0: Brand intro ──────────────────────────── */
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 grid lg:grid-cols-2 gap-6 items-center" style={{ minHeight: '88vh' }}>
             {/* Left: text */}
-            <div className="space-y-7">
-              <Badge className="bg-primary/10 text-primary border-primary/20 font-semibold text-sm px-4 py-1.5 rounded-full">
+            <div className="space-y-7 text-center lg:text-left pt-20 lg:pt-0">
+              <Badge className="hidden lg:inline-flex bg-primary/10 text-primary border-primary/20 font-semibold text-sm px-4 py-1.5 rounded-full">
                  Fast & Reliable Delivery
               </Badge>
-              <h1 className="text-5xl lg:text-[5.5rem] font-extrabold text-slate-900 leading-[1.0] tracking-tight">
+              <h1 className="text-4xl lg:text-[5rem] font-extrabold text-slate-900 leading-[1.0] tracking-tight">
                 Comfort Food<br />
                 <span className="text-primary">Delivered Fast</span>
               </h1>
-              <p className="text-slate-500 text-lg leading-relaxed max-w-md">
-                Light House connects you with the best local vendors in Lagos. Fresh, hot food — delivered with care, every single time.
+              <p className="text-slate-500 text-lg leading-relaxed max-w-md mx-auto lg:mx-0">
+                Light House connects you with the best local vendors in KWASU. Fresh, hot food — delivered with care, every single time.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                 {isAuthenticated ? (
                   <Link to="/vendors">
                     <Button size="lg" className="bg-primary hover:bg-primary/90 text-white h-14 px-8 text-base font-bold rounded-full shadow-lg shadow-primary/20">
@@ -278,7 +296,7 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
                 )}
               </div>
               {/* Stats row */}
-              <div className="flex gap-8 pt-2">
+              <div className="flex gap-8 pt-2 justify-center lg:justify-start">
                 <div>
                   <p className="text-2xl font-extrabold text-slate-900">4.8★</p>
                   <p className="text-xs text-slate-400 font-medium">Avg Rating</p>
@@ -309,11 +327,11 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
           </div>
         ) : (
           /* ── SLIDES 1-8: Vendor spotlight ───────────────────── */
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 flex items-center gap-6 lg:gap-10"
+          <div className="w-full max-w-7xl mx-auto  px-4 sm:px-8 lg:px-12 py-8 lg:py-16 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-10"
             style={{ minHeight: '88vh' }}>
 
             {/* ── Left: vendor desc ── */}
-            <div className="w-full lg:w-[32%] shrink-0 space-y-5 z-10">
+            <div className="w-full lg:w-[32%] shrink-0 space-y-5 z-10 pt-16 lg:pt-0">
               <div className="flex items-center gap-2">
                 <Badge className={`${vendor.badgeColor} text-white border-0 text-xs font-bold px-3 py-1 rounded-full`}>
                   {vendor.badge}
@@ -365,9 +383,9 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
             </div>
 
             {/* ── Center-right: hero food image ── */}
-            <div className="hidden lg:flex flex-1 items-center justify-center relative">
-              <div className="absolute w-[420px] h-[420px] bg-primary/10 rounded-full blur-3xl" />
-              <div className="relative w-[400px] h-[420px] xl:w-[460px] xl:h-[480px] rounded-[2.5rem] overflow-hidden shadow-2xl ring-4 ring-white">
+            <div className="flex lg:flex-1 items-center justify-center relative mb-8 lg:mb-0 w-full max-w-[280px] sm:max-w-[340px] lg:max-w-none mx-auto lg:mx-0">
+              <div className="absolute w-[100%] h-[100%] bg-primary/10 rounded-full blur-3xl" />
+              <div className="relative w-full aspect-square lg:aspect-auto lg:w-[400px] lg:h-[420px] xl:w-[460px] xl:h-[480px] rounded-[2.5rem] overflow-hidden shadow-2xl ring-4 ring-white">
                 <img
                   src={vendor.image}
                   alt={vendor.featured.name}
@@ -413,6 +431,8 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
             </div>
           </div>
         )}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* ── Navigation ───────────────────────────────────────────── */}

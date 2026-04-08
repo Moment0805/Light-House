@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { HeroCarousel } from '../components/HeroCarousel';
 import { AboutUs } from '../components/AboutUs';
 import { TestimonialsAndFAQ } from '../components/TestimonialsAndFAQ';
+import { motion } from 'framer-motion';
 
 export function Home() {
   const { isAuthenticated } = useAuth();
@@ -19,17 +20,22 @@ export function Home() {
       <AboutUs />
 
       {/* ─── 3. Our Story ─── */}
-      <section className="py-20 sm:py-28 bg-white border-t border-slate-100">
+      <section className="py-20 sm:py-28 bg-white border-t border-slate-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, type: "spring", bounce: 0.2 }}
+            >
               <p className="text-xs font-bold text-primary uppercase tracking-[0.2em] mb-3">Our Story</p>
               <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-[1.1] tracking-tight mb-6">
                 Started small.<br />
                 <span className="text-primary">Stayed real.</span>
               </h2>
               <p className="text-slate-500 text-lg leading-relaxed mb-5">
-                Light House Logistics grew out of a real frustration — great food in Lagos was always nearby, but getting it to people reliably was a mess. We started by working with a handful of vendors we personally vouched for, building trust one order at a time.
+                Light House Logistics grew out of a real frustration — great food in Kwara State University was always nearby, but getting it to people reliably was a mess. We started by working with a handful of vendors we personally vouched for, building trust one order at a time.
               </p>
               <p className="text-slate-500 text-lg leading-relaxed mb-10">
                 We still operate that way. No ghost kitchens, no shortcuts. Just honest vendors, dependable riders, and a platform that actually thinks about the person waiting at home.
@@ -58,9 +64,15 @@ export function Home() {
                   <div className="text-xs font-medium text-slate-500 mt-1">Avg Delivery</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="relative">
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, type: "spring", bounce: 0.2, delay: 0.4 }}
+            >
               <div className="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-square">
                 <img
                   src="/Delivery guy.jfif"
@@ -72,7 +84,7 @@ export function Home() {
                 <p className="text-3xl font-extrabold">2+</p>
                 <p className="text-sm text-white/80 mt-0.5 max-w-[140px]">Years of delivering comfort to your door</p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -81,8 +93,14 @@ export function Home() {
       <TestimonialsAndFAQ />
 
       {/* ─── 5. CTA Banner ─── */}
-      <section className="py-16 sm:py-20" style={{ background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fde68a 100%)' }}>
-        <div className="max-w-2xl mx-auto px-4 text-center">
+      <section className="py-16 sm:py-20 overflow-hidden" style={{ background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fde68a 100%)' }}>
+        <motion.div 
+          className="max-w-2xl mx-auto px-4 text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 1.0, type: "spring", bounce: 0.4 }}
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             Ready to order?
           </h2>
@@ -104,7 +122,7 @@ export function Home() {
               </Link>
             )}
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   );

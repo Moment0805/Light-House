@@ -50,10 +50,37 @@ export function VendorMenu() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#FAFAF9] flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-slate-400 text-sm">Loading vendor menu...</p>
+      <div className="min-h-screen bg-[#FAFAF9]">
+        <CautionBanner />
+        {/* Skeleton Hero */}
+        <div className="bg-white border-b border-slate-100">
+          <div className="h-48 sm:h-60 bg-slate-200 animate-pulse" />
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-6 relative -mt-16 sm:-mt-20">
+            <div className="w-24 h-4 bg-slate-300 rounded mb-4 animate-pulse relative z-10" />
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 sm:p-6 relative z-10 h-40 flex flex-col justify-center animate-pulse">
+              <div className="w-16 h-5 bg-slate-200 rounded-full mb-3" />
+              <div className="w-64 h-8 bg-slate-200 rounded mb-2" />
+              <div className="w-32 h-4 bg-slate-200 rounded" />
+            </div>
+          </div>
+        </div>
+        {/* Skeleton Menu Items */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+          <div className="flex gap-2 mb-6 overflow-hidden">
+             {[...Array(4)].map((_, i) => <div key={i} className="w-20 h-8 bg-slate-200 rounded-full animate-pulse" />)}
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+             {[...Array(6)].map((_, i) => (
+               <div key={i} className="flex gap-4 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm animate-pulse">
+                 <div className="w-24 h-24 bg-slate-200 rounded-xl shrink-0" />
+                 <div className="flex flex-col justify-center flex-1">
+                   <div className="w-3/4 h-5 bg-slate-200 rounded mb-2" />
+                   <div className="w-full h-3 bg-slate-200 rounded mb-4" />
+                   <div className="w-16 h-5 bg-slate-200 rounded" />
+                 </div>
+               </div>
+             ))}
+          </div>
         </div>
       </div>
     );

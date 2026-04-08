@@ -15,7 +15,7 @@ A comprehensive guide for conducting user testing sessions to validate the food 
 ### Recruitment Criteria
 - Uses food delivery apps at least once a month
 - Owns a smartphone and/or computer
-- Lives in Lagos or similar urban area
+- Lives in Malate or similar urban area
 
 ---
 

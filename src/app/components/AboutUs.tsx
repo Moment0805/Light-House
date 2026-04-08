@@ -1,4 +1,5 @@
 import { Truck, Smile, ShieldCheck, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const pillars = [
   {
@@ -29,7 +30,13 @@ export function AboutUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Top: label + heading ── */}
-        <div className="max-w-2xl mb-14">
+        <motion.div 
+          className="max-w-2xl mb-14"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, type: "spring" }}
+        >
           <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">About Light House</p>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
             We don't just deliver food.<br />
@@ -39,13 +46,19 @@ export function AboutUs() {
             Light House Logistics started with a simple observation — ordering food should never feel stressful. 
             So we built a platform around the people, not the process.
           </p>
-        </div>
+        </motion.div>
 
         {/* ── Split layout ── */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* Left: image collage */}
-          <div className="relative grid grid-cols-2 gap-4">
+          <motion.div 
+            className="relative grid grid-cols-2 gap-4"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
+          >
             <div className="col-span-2 rounded-3xl overflow-hidden h-60 shadow-md">
               <img src="/hero-testimonial.jpeg" alt="Our team" className="w-full h-full object-cover" />
             </div>
@@ -61,18 +74,25 @@ export function AboutUs() {
               <p className="text-3xl font-extrabold">10k+</p>
               <p className="text-sm text-white/80 mt-0.5">Orders delivered</p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right: pillars */}
           <div className="grid sm:grid-cols-2 gap-6">
-            {pillars.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+            {pillars.map(({ icon: Icon, title, body }, index) => (
+              <motion.div 
+                key={title} 
+                className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.1 * index, type: "spring", bounce: 0.4 }}
+              >
                 <div className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-4">
                   <Icon className="w-5 h-5" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">{title}</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">{body}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

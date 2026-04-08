@@ -1,5 +1,7 @@
 import { Link } from 'react-router';
-import { Lightbulb, Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Lightbulb, Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { FaXTwitter } from "react-icons/fa6";
+
 
 export function Footer() {
   return (
@@ -31,7 +33,7 @@ export function Footer() {
                 href="#"
                 className="w-9 h-9 rounded-lg bg-muted hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-colors"
               >
-                <Twitter className="w-4 h-4" />
+                <FaXTwitter className="w-4 h-4" />
               </a>
               <a
                 href="#"
