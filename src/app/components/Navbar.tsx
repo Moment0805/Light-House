@@ -81,7 +81,7 @@ export function Navbar() {
                   <Link to="/profile">
                     <Button variant="ghost" size="sm" className="gap-2 hover:bg-muted">
                       <User className="w-5 h-5" />
-                      <span className="text-sm">{user?.name}</span>
+                      <span className="text-sm">{user?.firstName}</span>
                     </Button>
                   </Link>
                   <Button
