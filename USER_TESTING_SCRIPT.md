@@ -1,4 +1,4 @@
-# Light House Logistics - User Testing Script
+# Bogaad - User Testing Script
 
 A comprehensive guide for conducting user testing sessions to validate the food ordering platform.
 
@@ -54,7 +54,7 @@ A comprehensive guide for conducting user testing sessions to validate the food 
 ### Introduction (5 minutes)
 
 **Script:**
-> "Thank you for participating in this test session. Today, we're testing a new food ordering platform called Light House Logistics. I want to emphasize that we're testing the platform, not you. There are no wrong answers or actions.
+> "Thank you for participating in this test session. Today, we're testing a new food ordering platform called Bogaad. I want to emphasize that we're testing the platform, not you. There are no wrong answers or actions.
 >
 > Please think aloud as you complete the tasks - tell me what you're thinking, what you expect to happen, and any concerns you have. Your honest feedback will help us improve the experience.
 >
@@ -67,7 +67,7 @@ A comprehensive guide for conducting user testing sessions to validate the food 
 ### Scenario 1: First-Time User Registration (10 minutes)
 
 **Task:**
-> "You've just heard about Light House Logistics from a friend and want to try ordering food. Create an account and explore what vendors are available."
+> "You've just heard about Bogaad from a friend and want to try ordering food. Create an account and explore what vendors are available."
 
 **Success Criteria:**
 - [ ] Successfully navigates to signup page
@@ -281,7 +281,7 @@ A comprehensive guide for conducting user testing sessions to validate the food 
 
 ### Open-Ended Questions
 
-1. **What did you like most about Light House Logistics?**
+1. **What did you like most about Bogaad?**
    - (User response)
 
 2. **What frustrated you or slowed you down?**
@@ -449,7 +449,7 @@ After implementing changes, run abbreviated tests focusing on:
 ## 📊 Sample Findings Report Template
 
 ```markdown
-# User Testing Results - Light House Logistics
+# User Testing Results - Bogaad
 
 **Date:** [Date]
 **Participants:** [Number] users

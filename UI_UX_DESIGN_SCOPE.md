@@ -1,12 +1,12 @@
-# Light House Logistics - UI/UX Product Scope & Screen Flow
+# Bogaad - UI/UX Product Scope & Screen Flow
 
 ## 1. Brand Background & Design Direction
 
 ### 1.1 Brand Identity
-**Light House Logistics** stands for comfort, ease, convenience, reliability, and smooth food ordering. The brand experience should feel:
+**Bogaad** stands for comfort, ease, convenience, reliability, and smooth food ordering. The brand experience should feel:
 - **Warm & Trustworthy:** Reassuring users that their food is in good hands.
 - **Calm & Easy:** A stress-free, frictionless ordering process.
-- **Guided & Safe:** Subtly connecting to the "Light House" aspect by offering clear navigation and reliable service.
+- **Guided & Safe:** Subtly connecting to the comfort aspect by offering clear navigation and reliable service.
 
 ### 1.2 Overall Style Direction
 - **Aesthetic:** Modern, minimal but rich, soft, and comforting.
@@ -19,7 +19,7 @@
 ### 1.3 Color Palette
 - **Backgrounds:** Warm cream (`#FAFAF9` or `#FFFDF8`) or soft white for primary surfaces. Card backgrounds in pure white (`#FFFFFF`).
 - **Primary / Trust:** Deep navy (`#0F172A`) or dark slate for primary text, headings, and structural elements.
-- **Accent (The "Light House" glow):** Warm gold or amber (`#F59E0B` or `#D97706`) for primary CTAs, active states, and highlights.
+- **Accent (The "Bogaad" glow):** Warm gold or amber (`#F59E0B` or `#D97706`) for primary CTAs, active states, and highlights.
 - **Secondary / Action:** Soft green (`#22C55E` or `#10B981`) for success states and food/order highlights.
 - **Neutrals:** Soft grays (`#94A3B8`, `#cbd5e1`) for secondary text, borders, and disabled states.
 
@@ -37,7 +37,7 @@
 ## 3. Information Architecture & Navigation
 
 ### Desktop Navigation (Sticky Navbar)
-- **Left:** Brand Logo (Light House)
+- **Left:** Brand Logo (Bogaad)
 - **Center:** Home | Vendors (Protected) | Orders | About Us
 - **Right (Logged Out):** Log In (Text) | Create Account (Button)
 - **Right (Logged In):** Profile Dropdown | Slide-out Cart (with item badge)
@@ -126,7 +126,7 @@
 
 ### 4.7 Payment Processing / Redirect State
 - **UI:** Full-screen modal or page takeover overlay.
-- **Visuals:** Pulsing Light House logo or circular spinner.
+- **Visuals:** Pulsing Bogaad logo or circular spinner.
 - **Text:** "Securely redirecting to OPay..." followed by "Verifying your payment... Please don't close this window."
 
 ### 4.8 Order Success Page

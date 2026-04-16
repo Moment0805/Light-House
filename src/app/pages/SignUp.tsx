@@ -70,13 +70,13 @@ export function SignUp() {
       <Card className="w-full max-w-md p-8 shadow-2xl border-border rounded-[2.5rem] bg-card/95 backdrop-blur-sm">
         <div className="flex justify-center mb-8">
           <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-lg ring-1 ring-border">
-            <img src="/logo.jpeg" alt="Light House Logo" className="w-full h-full object-cover" />
+            <img src="/bogaad.svg" alt="Bogaad Logo" className="w-full h-full object-cover" />
           </div>
         </div>
 
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight mb-2">Create Account</h1>
-          <p className="text-slate-500">Join Light House Logistics today</p>
+          <p className="text-slate-500">Join Bogaad today</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">

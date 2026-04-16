@@ -39,7 +39,7 @@ const testimonials = [
     name: 'OluwaMoment',
     location: 'Safari, KWASU Malate',
     rating: 5,
-    text: "BK 46 grilled chicken is not a joke. I wasn't even expecting much the first time but it came well packaged and the portion was actually worth the price. Light House is the only delivery app I actually trust on campus.",
+    text: "BK 46 grilled chicken is not a joke. I wasn't even expecting much the first time but it came well packaged and the portion was actually worth the price. Bogaad is the only delivery app I actually trust on campus.",
     vendor: 'BK 46',
     avatar: '/Moment.jpeg',
   },

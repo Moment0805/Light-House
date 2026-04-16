@@ -1,14 +1,14 @@
-# Light House Logistics - Food Ordering Platform
+# Bogaad - Food Ordering Platform
 ## Product Design & Implementation Specification
 
 ---
 
 ## 🎯 Project Overview
 
-**Light House Logistics** is a modern, warm, and comfort-focused food ordering web application designed to provide seamless food delivery experiences with an emphasis on trust, convenience, and smooth user interactions.
+**Bogaad** is a modern, warm, and comfort-focused food ordering web application designed to provide seamless food delivery experiences with an emphasis on trust, convenience, and smooth user interactions.
 
 ### Brand Identity
-- **Name:** Light House Logistics
+- **Name:** Bogaad
 - **Tagline:** Delivering comfort, convenience, and trust
 - **Mission:** Connect users with trusted food vendors through a premium yet simple ordering experience
 
@@ -688,7 +688,7 @@ Lucide React icon set:
 
 ## 🎉 Summary
 
-**Light House Logistics** is a production-ready food ordering platform with:
+**Bogaad** is a production-ready food ordering platform with:
 - ✅ 15 complete screens
 - ✅ Warm, modern design system
 - ✅ Full user authentication

@@ -35,7 +35,7 @@ export function Home() {
                 <span className="text-primary">Stayed real.</span>
               </h2>
               <p className="text-slate-500 text-lg leading-relaxed mb-5">
-                Light House Logistics grew out of a real frustration — great food in Kwara State University was always nearby, but getting it to people reliably was a mess. We started by working with a handful of vendors we personally vouched for, building trust one order at a time.
+                Bogaad grew out of a real frustration — great food in Kwara State University was always nearby, but getting it to people reliably was a mess. We started by working with a handful of vendors we personally vouched for, building trust one order at a time.
               </p>
               <p className="text-slate-500 text-lg leading-relaxed mb-10">
                 We still operate that way. No ghost kitchens, no shortcuts. Just honest vendors, dependable riders, and a platform that actually thinks about the person waiting at home.

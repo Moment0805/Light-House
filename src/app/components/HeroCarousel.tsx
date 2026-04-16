@@ -271,7 +271,7 @@ export function HeroCarousel({ isAuthenticated }: { isAuthenticated: boolean }) 
                 <span className="text-primary">Delivered Fast</span>
               </h1>
               <p className="text-slate-500 text-lg leading-relaxed max-w-md mx-auto lg:mx-0">
-                Light House connects you with the best local vendors in KWASU. Fresh, hot food — delivered with care, every single time.
+                Bogaad connects you with the best local vendors in KWASU. Fresh, hot food — delivered with care, every single time.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                 {isAuthenticated ? (

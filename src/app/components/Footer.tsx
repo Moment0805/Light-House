@@ -12,11 +12,11 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md">
-                <img src="/logo.jpeg" alt="Light House Logo" className="w-full h-full object-cover" />
+                <img src="/bogaad.svg" alt="Bogaad Logo" className="w-full h-full object-cover" />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-primary leading-tight">Light House</span>
-                <span className="text-xs font-medium text-muted-foreground uppercase tracking-widest leading-none">Logistics</span>
+                <span className="text-lg font-bold text-primary leading-tight">Bogaad</span>
+
               </div>
             </div>
             <p className="text-muted-foreground text-sm mb-4 max-w-md">
@@ -93,7 +93,7 @@ export function Footer() {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Light House Logistics. All rights reserved.
+            © {new Date().getFullYear()} Bogaad. All rights reserved.
           </p>
         </div>
       </div>

@@ -46,7 +46,7 @@ export interface Order {
   paymentStatus: 'pending' | 'paid' | 'failed';
 }
 
-// ── Real Light House Vendors ────────────────────────────────────
+// ── Real Bogaad Vendors ────────────────────────────────────
 export const mockVendors: Vendor[] = [
   {
     id: '1',

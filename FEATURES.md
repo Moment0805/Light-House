@@ -1,4 +1,4 @@
-# Light House Logistics - Feature List
+# Bogaad - Feature List
 
 Complete inventory of features implemented in the food ordering platform.
 
@@ -363,7 +363,7 @@ Complete inventory of features implemented in the food ordering platform.
 ## 🎨 Branding & Design
 
 ### Brand Identity
-- ✅ Light House Logistics name
+- ✅ Bogaad name
 - ✅ Lighthouse icon in logo
 - ✅ Warm, welcoming aesthetic
 - ✅ Premium but approachable

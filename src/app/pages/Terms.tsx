@@ -11,7 +11,7 @@ export function Terms() {
 
         <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-slate-100 prose prose-slate prose-lg max-w-none text-slate-600">
           <p className="text-lg font-medium text-slate-700 mb-8 border-b border-slate-100 pb-8">
-            Welcome to Light House Logistics. By accessing or using our platform, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.
+            Welcome to Bogaad. By accessing or using our platform, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.
           </p>
 
           <h2 className="text-xl font-bold text-slate-900 mt-10 mb-3 flex items-center gap-3">
@@ -67,7 +67,7 @@ export function Terms() {
             Limitation of Liability
           </h2>
           <p className="pl-11 mb-8">
-            Light House Logistics is not responsible for delays, service interruptions, or third-party issues beyond our reasonable control. Our liability is limited to the maximum extent permitted by law.
+            Bogaad is not responsible for delays, service interruptions, or third-party issues beyond our reasonable control. Our liability is limited to the maximum extent permitted by law.
           </p>
 
           <h2 className="text-xl font-bold text-slate-900 mt-10 mb-3 flex items-center gap-3">

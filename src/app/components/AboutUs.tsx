@@ -37,13 +37,13 @@ export function AboutUs() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, type: "spring" }}
         >
-          <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">About Light House</p>
+          <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">About Bogaad</p>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
             We don't just deliver food.<br />
             <span className="text-primary">We deliver comfort.</span>
           </h2>
           <p className="mt-5 text-slate-500 text-lg leading-relaxed">
-            Light House Logistics started with a simple observation — ordering food should never feel stressful. 
+            Bogaad started with a simple observation — ordering food should never feel stressful. 
             So we built a platform around the people, not the process.
           </p>
         </motion.div>

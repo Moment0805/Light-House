@@ -20,11 +20,11 @@ export function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow">
-              <img src="/logo.jpeg" alt="Light House Logo" className="w-full h-full object-cover" />
+              <img src="/bogaad.svg" alt="Bogaad Logo" className="w-full h-full object-cover" />
             </div>
             <div className="hidden sm:flex flex-col">
-              <span className="text-lg font-bold text-primary leading-tight">Light House</span>
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-widest leading-none">Logistics</span>
+              <span className="text-lg font-bold text-primary leading-tight">Bogaad</span>
+
             </div>
           </Link>
 

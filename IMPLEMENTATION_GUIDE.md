@@ -1,8 +1,8 @@
-# Light House Logistics - Developer Implementation Guide
+# Bogaad - Developer Implementation Guide
 
 ## 🚀 Quick Start
 
-This guide provides practical instructions for developers to build the Light House Logistics food ordering platform.
+This guide provides practical instructions for developers to build the Bogaad food ordering platform.
 **Tech Stack:**
 - **Frontend:** Next.js (App Router), React, Tailwind CSS, TypeScript
 - **Backend:** NestJS, TypeScript, PostgreSQL (Prisma)
@@ -62,7 +62,7 @@ src/
 ## 🎨 Next.js Design System & Tailwind
 
 ### Colors & Theming
-We use Tailwind CSS variables to support the comforting "Light House" aesthetic.
+We use Tailwind CSS variables to support the comforting Bogaad aesthetic.
 
 **`tailwind.config.ts` setup:**
 ```typescript
@@ -74,7 +74,7 @@ module.exports = {
         background: '#FAFAF9',      // Warm cream
         foreground: '#0F172A',      // Dark navy
         primary: {
-          DEFAULT: '#F59E0B',       // Amber / Gold (Light House glow)
+          DEFAULT: '#F59E0B',       // Amber / Gold (Bogaad glow)
           foreground: '#FFFFFF',
         },
         secondary: {

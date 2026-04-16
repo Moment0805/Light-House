@@ -1,10 +1,10 @@
 import '../styles/index.css';
 
 export const metadata = {
-  title: 'Light House Logistics',
+  title: 'Bogaad',
   description: 'Food ordering platform',
   icons: {
-    icon: '/logo.jpeg',
+    icon: '/bogaad.svg',
   },
 };
 
