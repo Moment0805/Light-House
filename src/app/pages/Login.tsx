@@ -37,8 +37,8 @@ export function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-amber-50 via-background to-orange-50">
       <Card className="w-full max-w-md p-8 shadow-2xl border-border rounded-[2.5rem] bg-card/95 backdrop-blur-sm">
-        <div className="flex justify-center mb-8">
-          <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-lg ring-1 ring-border">
+        <div className="flex justify-center ">
+          <div className="w-32 h-20 ">
             <img src="/bogaad.svg" alt="Bogaad Logo" className="w-full h-full object-cover" />
           </div>
         </div>

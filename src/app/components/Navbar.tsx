@@ -19,12 +19,8 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow">
+            <div className="w-32 h-30">
               <img src="/bogaad.svg" alt="Bogaad Logo" className="w-full h-full object-cover" />
-            </div>
-            <div className="hidden sm:flex flex-col">
-              <span className="text-lg font-bold text-primary leading-tight">Bogaad</span>
-
             </div>
           </Link>
 

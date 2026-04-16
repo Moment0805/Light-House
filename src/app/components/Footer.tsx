@@ -6,17 +6,13 @@ import { FaXTwitter } from "react-icons/fa6";
 export function Footer() {
   return (
     <footer className="bg-card border-t border-border mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md">
+            <div className="flex items-center ">
+              <div className="w-40 h-28 ">
                 <img src="/bogaad.svg" alt="Bogaad Logo" className="w-full h-full object-cover" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-bold text-primary leading-tight">Bogaad</span>
-
               </div>
             </div>
             <p className="text-muted-foreground text-sm mb-4 max-w-md">
