@@ -12,7 +12,7 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center ">
               <div className="w-40 h-28 ">
-                <img src="/bogaad.svg" alt="Bogaad Logo" className="w-full h-full object-cover" />
+                <img src="/Bogaad logo.png" alt="Bogaad Logo" className="w-full h-full object-cover" />
               </div>
             </div>
             <p className="text-muted-foreground text-sm mb-4 max-w-md">
@@ -77,7 +77,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <Mail className="w-4 h-4 mt-0.5 text-accent" />
-                <span>support@lighthouse.ng</span>
+                <span>support@bogaad.site</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-0.5 text-accent" />

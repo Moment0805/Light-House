@@ -193,4 +193,9 @@
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
   }
+
+  /* Ensure all clickable elements show pointer cursor */
+  button, a, [role="button"], input[type="submit"], input[type="button"], [onclick] {
+    cursor: pointer;
+  }
 }

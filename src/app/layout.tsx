@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Bogaad',
   description: 'Food ordering platform',
   icons: {
-    icon: '/bogaad.svg',
+    icon: '/bogaad.png',
   },
 };
 
