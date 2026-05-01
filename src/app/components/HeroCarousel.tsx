@@ -15,7 +15,7 @@ const vendors = [
     tag: 'Burgers & Grills',
     description: 'Home of the boldest grills and signature burgers in town. Every bite is flame-kissed perfection.',
     rating: 4.8,
-    delivery: '20–30 min',
+    delivery: '15–20 min',
     image: '/Nigerian Native Jollof Rice.jfif',
     thumbnails: [
       { img: '/Nigeria Jollof and turkey.jfif', name: 'Jollof with turkey', price: '₦4,500' },
@@ -32,7 +32,7 @@ const vendors = [
     tag: 'Nigerian Homestyle',
     description: 'Rich, hearty Nigerian cuisine made the way mama intended. Comfort in every pot.',
     rating: 4.7,
-    delivery: '25–35 min',
+    delivery: '15–20 min',
     image: '/Jollof Rice & Chicken.jfif',
     thumbnails: [
       { img: '/Food.jfif', name: 'Big Plate and turkey', price: '₦5,000' },
@@ -83,7 +83,7 @@ const vendors = [
     tag: 'Nigerian Cuisine',
     description: 'Authentic Nigerian dishes bursting with flavour. Party Jollof, stir fry, and more — cooked with love.',
     rating: 4.8,
-    delivery: '30–40 min',
+    delivery: '10–20 min',
     image: '/Nigeria Jollof and turkey.jfif',
     thumbnails: [
       { img: '/Steamy Nigeria Jollof.jfif', name: 'Morning Jollof', price: '₦1,500' },
@@ -100,7 +100,7 @@ const vendors = [
     tag: 'Continental & Local',
     description: 'A stadium of flavours with continental dishes and local classics for every palate and mood.',
     rating: 4.5,
-    delivery: '25–35 min',
+    delivery: '15–25 min',
     image: '/Jollof Rice & Chicken.jfif',
     thumbnails: [
       { img: '/Jollof Rice & Chicken.jfif', name: 'Chicken Plate', price: '₦2,500' },
@@ -116,7 +116,7 @@ const vendors = [
     tag: 'Breakfast & Brunch',
     description: 'Start your day right with hearty breakfast bowls, light bites, and morning favourites.',
     rating: 4.7,
-    delivery: '20–30 min',
+    delivery: '15–25 min',
     image: '/Breakfast served by Chat GPT😍😋_   Prompt_ A….jfif',
     thumbnails: [
       { img: '/Making Nigerian Afang Soup Recipe - Dream Africa.jfif', name: 'Afang Soup', price: '₦3,200' },
@@ -133,7 +133,7 @@ const vendors = [
     tag: 'Supermart & Groceries',
     description: 'Your neighbourhood supermart and resturant. Fresh groceries,delicious dishes, staples, and everyday essentials delivered fast.',
     rating: 4.6,
-    delivery: '35–50 min',
+    delivery: '15–30 min',
     image: '/25 Authentic Nigerian Dinner Recipes.jfif',
     thumbnails: [
       { img: '/hake fish.jfif', name: 'Hake Fish', price: '₦3,000' },

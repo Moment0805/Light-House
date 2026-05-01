@@ -20,7 +20,7 @@ export function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-32 h-30">
-              <img src="/Bogaad logo.png" alt="Bogaad Logo" className="w-full h-full object-cover" />
+              <img src="/Bogaad logo.png" alt="Bogaad Logo" className="w-full h-full object-contain" />
             </div>
           </Link>
 

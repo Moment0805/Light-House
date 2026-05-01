@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router';
-import { Analytics } from '@vercel/analytics/react';
+// import { Analytics } from '@vercel/analytics/react';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import { router } from './routes';
@@ -11,7 +11,7 @@ export default function App() {
       <CartProvider>
         <RouterProvider router={router} />
         <Toaster position="top-right" />
-        <Analytics />
+        {/* <Analytics /> */}
       </CartProvider>
     </AuthProvider>
   );

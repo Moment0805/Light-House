@@ -11,8 +11,8 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center ">
-              <div className="w-40 h-28 ">
-                <img src="/Bogaad logo.png" alt="Bogaad Logo" className="w-full h-full object-cover" />
+              <div className="w-24 h-24 ">
+                <img src="/Bogaad logo.png" alt="Bogaad Logo" className="w-full h-full object-contain" />
               </div>
             </div>
             <p className="text-muted-foreground text-sm mb-4 max-w-md">

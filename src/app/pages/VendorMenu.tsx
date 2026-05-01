@@ -169,7 +169,7 @@ export function VendorMenu() {
                 </div>
                 <div className="flex items-center gap-2 text-slate-500">
                   <Clock className="w-4 h-4 text-slate-400" />
-                  <span>30-45 mins</span>
+                  <span>15-25 mins</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-500">
                   <ShoppingBag className="w-4 h-4 text-slate-400" />
