@@ -126,7 +126,23 @@ export function Checkout() {
   ];
 
   return (
-    <div className="min-h-screen py-8 bg-[#FAFAF9]">
+    <div className="min-h-screen bg-[#FAFAF9] pb-8">
+      <div className="bg-orange-100 text-orange-800 w-full py-2.5 mb-8 overflow-hidden relative flex items-center h-12">
+        <style>{`
+          @keyframes marquee {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+          }
+          .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+          }
+        `}</style>
+        <div className="animate-marquee font-bold text-sm tracking-wide">
+          Our OPay server is currently undergoing maintenance. Please use Paystack to complete all payments.
+        </div>
+      </div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-slate-900 mb-8">Checkout</h1>
 
@@ -186,35 +202,50 @@ export function Checkout() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {paymentOptions.map((opt) => {
-                  const isSelected = selectedMethod === opt.id;
+                  const isDisabled = opt.id === 'opay';
+                  const isSelected = selectedMethod === opt.id && !isDisabled;
+                  
                   return (
-                    <button
-                      key={opt.id}
-                      type="button"
-                      onClick={() => setSelectedMethod(opt.id)}
-                      className={`relative p-4 rounded-xl border-2 text-left transition-all duration-200 ${
-                        isSelected
-                          ? `${opt.border} bg-white shadow-md`
-                          : 'border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-white'
-                      }`}
-                    >
-                      {isSelected && (
-                        <CheckCircle className="absolute top-3 right-3 w-4 h-4 text-primary" />
+                    <div key={opt.id} className="relative group">
+                      <button
+                        type="button"
+                        disabled={isDisabled}
+                        onClick={() => !isDisabled && setSelectedMethod(opt.id)}
+                        className={`w-full relative p-4 rounded-xl border-2 text-left transition-all duration-200 ${
+                          isDisabled
+                            ? 'opacity-60 cursor-not-allowed border-slate-200 bg-slate-100'
+                            : isSelected
+                            ? `${opt.border} bg-white shadow-md`
+                            : 'border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-white'
+                        }`}
+                      >
+                        {isSelected && (
+                          <CheckCircle className="absolute top-3 right-3 w-4 h-4 text-primary" />
+                        )}
+                        <div className="flex items-center gap-3">
+                          <div className={`w-10 h-10 ${isDisabled ? 'bg-slate-300' : opt.selectedBg} rounded-lg flex items-center justify-center overflow-hidden bg-white/10`}>
+                            <img 
+                              src={opt.image} 
+                              alt={`${opt.name} logo`} 
+                              className={`w-full h-full object-contain p-1.5 ${isDisabled ? 'grayscale opacity-70' : ''}`} 
+                            />
+                          </div>
+                          <div>
+                            <p className="font-bold text-slate-900 text-sm">{opt.name}</p>
+                            <p className="text-xs text-slate-500">{opt.label}</p>
+                          </div>
+                        </div>
+                      </button>
+                      
+                      {isDisabled && (
+                        <div className="absolute left-1/2 -translate-x-1/2 -top-10 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 whitespace-nowrap">
+                          <div className="bg-slate-800 text-white text-xs font-semibold py-2 px-3 rounded-md shadow-lg relative">
+                            Currently unavailable due to server issues
+                            <div className="absolute w-2 h-2 bg-slate-800 transform rotate-45 left-1/2 -translate-x-1/2 -bottom-1"></div>
+                          </div>
+                        </div>
                       )}
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 ${opt.selectedBg} rounded-lg flex items-center justify-center overflow-hidden bg-white/10`}>
-                          <img 
-                            src={opt.image} 
-                            alt={`${opt.name} logo`} 
-                            className="w-full h-full object-contain p-1.5 " 
-                          />
-                        </div>
-                        <div>
-                          <p className="font-bold text-slate-900 text-sm">{opt.name}</p>
-                          <p className="text-xs text-slate-500">{opt.label}</p>
-                        </div>
-                      </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>
