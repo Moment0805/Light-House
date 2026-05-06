@@ -29,7 +29,7 @@ export function FloatingCart() {
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 50, opacity: 0 }}
-        className="fixed bottom-6 right-6 z-40"
+        className="fixed bottom-20 right-6 z-40"
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -56,7 +56,7 @@ export function FloatingCart() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed bottom-24 right-6 w-[340px] bg-white rounded-2xl shadow-2xl border border-slate-100/50 z-50 overflow-hidden flex flex-col max-h-[60vh]"
+            className="fixed bottom-36 right-6 w-[340px] bg-white rounded-2xl shadow-2xl border border-slate-100/50 z-50 overflow-hidden flex flex-col max-h-[60vh]"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-slate-50 bg-slate-50/50">
